@@ -361,3 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/JobPortal/wwwroot/jobs/jobs_data - Copy.json

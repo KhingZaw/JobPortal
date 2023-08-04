@@ -8,14 +8,6 @@
     </ol>
 </nav>
 
-
-@*<div>
-    <h3>Details</h3>
-    <h6>@_selectedJob.Name</h6>
-    <p>@_selectedJob.Description</p>
-</div>
-*@
-
 @if ( _jobdescs == null)
 {
     <p><em>Loading...</em></p>
@@ -41,27 +33,26 @@ else
 }
 else
 {
-<div>
-    <h3>Job Requirements</h3>
+    <div>
+        <h3>Job Requirements</h3>
 
-   @foreach (var jobreq in _jobreqs)
-     {
-        <p>@jobreq.requirement</p>    
-     }
- 
-</div>
+        @foreach (var jobreq in _jobreqs)
+        {
+            <p>@jobreq.requirement</p>
+        }
+
+    </div>
 }
+
 
 @code {
 
     [Parameter] public int Id { get; set;}
 
-    private IEnumerable<Jobs>? _jobs;
-
-    private Jobs _selectedJob;
-
+    private Jobs? _selectedJob;
 
     private IEnumerable<JobDescription>? _jobdescs;
+
 
     private IEnumerable<JobRequirement>? _jobreqs;
 
