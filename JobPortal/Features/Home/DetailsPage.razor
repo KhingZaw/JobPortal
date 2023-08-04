@@ -9,12 +9,12 @@
 </nav>
 
 
-<div>
+@*<div>
     <h3>Details</h3>
     <h6>@_selectedJob.Name</h6>
     <p>@_selectedJob.Description</p>
 </div>
-
+*@
 
 @if ( _jobdescs == null)
 {
@@ -35,7 +35,7 @@ else
 }
 
 
-@*@if ( _jobreqs == null)
+@if ( _jobreqs == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -50,7 +50,7 @@ else
      }
  
 </div>
-}*@
+}
 
 @code {
 
@@ -60,10 +60,10 @@ else
 
     private Jobs _selectedJob;
 
+
     private IEnumerable<JobDescription>? _jobdescs;
 
-
-    //private IEnumerable<JobRequirement>? _jobreqs;
+    private IEnumerable<JobRequirement>? _jobreqs;
 
 
 
@@ -71,12 +71,12 @@ else
     {
         try
         {
-            _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+           var _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
 
-            _selectedJob = _jobs.Where(x => x.Id == Id).First();
+            _selectedJob = _jobs!.Where(x => x.Id == Id).First();
 
             _jobdescs = _selectedJob.JobDescriptions;
-            //_jobreqs = _selectedJob.JobRequirements;
+            _jobreqs = _selectedJob.JobRequirements;
 
             
         }

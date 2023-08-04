@@ -17,11 +17,21 @@
     "jobDescriptions": [
       {
         "desc_id": 1,
-        "description": "first job desc"
+        "description": "first job desc 1"
       },
       {
         "desc_id": 2,
-        "description": "second job desc."
+        "description": "second job desc. 1"
+      }
+    ],
+    "JobRequirements": [
+      {
+        "require_id": 1,
+        "requirement": "first job requirement abc 1"
+      },
+      {
+        "require_id": 2,
+        "requirement": "second job requirement def. 1"
       }
     ]
   },
@@ -43,11 +53,21 @@
     "jobDescriptions": [
       {
         "desc_id": 1,
-        "description": "first job desc"
+        "description": "first job desc 2"
       },
       {
         "desc_id": 2,
-        "description": "second job desc."
+        "description": "second job desc. 2"
+      }
+    ],
+    "JobRequirements": [
+      {
+        "require_id": 1,
+        "requirement": "first job requirement abc 2"
+      },
+      {
+        "require_id": 2,
+        "requirement": "second job requirement def. 2"
       }
     ]
   } 
