@@ -1,0 +1,48 @@
+﻿@page "/"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+<PageTitle>JobPortal</PageTitle>
+
+
+@if ( _jobs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <JobSearch /> 
+
+    <div class="grid">
+        @foreach (var job in _jobs)
+        {
+            <JobCard Job="job" OnSelected="HandleJobSelected" />
+        }
+    </div>
+}
+
+@code {
+
+    private IEnumerable<Jobs>? _jobs;
+
+    protected override async Task OnInitializedAsync()
+    {   
+        try
+        {
+            _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading job data: {ex.Message}");
+        }
+
+    }
+    private void HandleJobSelected(Jobs job)
+    {
+        string url = "";
+        url = "/detail/" + job.Id.ToString();
+        NavManager.NavigateTo(url);
+
+    }
+
+}

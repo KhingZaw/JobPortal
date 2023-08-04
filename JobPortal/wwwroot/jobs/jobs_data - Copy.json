@@ -1,0 +1,76 @@
+﻿[
+  {
+    "ID": 1,
+    "Name": "Senior Developer",
+    "image": "https://images.unsplash.com/photo-1661956602139-ec64991b8b16?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=365&q=80",
+    "frameworkName": "ASP.Net Core",
+    "pLanguage": "csharp",
+    "employerName": "Nxgen",
+    "jobType": "Permanent",
+    "createdDate": "25.07.2023",
+    "createdTime": "11:00 pm",
+    "location": "Yangon",
+    "opentoName": "New graduate",
+    "opento": "Female/Male",
+    "salary": 3,
+    "sourceName": "facebook",
+    "JobDescriptions": [
+      {
+        "desc_id": 1,
+        "description": "first job desc"
+      },
+      {
+        "desc_id": 2,
+        "description": "second job desc."
+      }
+    ],
+    "JobRequirements": [
+      {
+        "require_id": 1,
+        "requirement": "first job requirement abc"
+      },
+      {
+        "require_id": 2,
+        "requirement": "second job requirement def."
+      }
+    ]
+  },
+  {
+    "ID": 2,
+    "Name": "Senior Developer",
+    "image": "jobs/2.jpg",
+    "frameworkName": "ASP.Net Core",
+    "pLanguage": "C# Language",
+    "employerName": "Nxgen",
+    "jobType": "Permanent",
+    "createdDate": "30.07.2023",
+    "createdTime": "12:00 pm",
+    "location": "Mandalay",
+    "opentoName": "New graduate",
+    "opento": "Female/Male",
+    "salary": 15,
+    "sourceName": "facebook",
+    "JobDescriptions": [
+      {
+        "desc_id": 1,
+        "description": "first job desc"
+      },
+      {
+        "desc_id": 2,
+        "description": "second job desc."
+      }
+    ],
+    "JobRequirements": [
+      {
+        "require_id": 1,
+        "requirement": "first job requirement abc"
+      },
+      {
+        "require_id": 2,
+        "requirement": "second job requirement def."
+      }
+    ]
+  }
+    
+]
+

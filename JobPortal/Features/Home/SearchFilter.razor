@@ -1,0 +1,33 @@
+﻿@inject NavigationManager NavManager
+
+<div class="filters">
+    <label for="maxsalary">Max Salary</label>
+    <input id="maxsalary"
+           type="number"
+           class="form-control"
+    @bind="_maxsalary" />
+    <button class="btn btn-outline-primary"
+    @onclick="FilterSearchResults">
+        Filter
+    </button>
+    <button class="btn btn-outline-secondary"
+    @onclick="ClearSearchFilter">
+        Clear
+    </button>
+</div>
+
+@code {
+    private int _maxsalary;
+
+    [Parameter, EditorRequired] public string SearchTerm { get; set; } = default!;
+    [Parameter] public int? MaxSalary { get; set; }
+
+    private void FilterSearchResults()
+        => NavManager.NavigateTo($"/search/{SearchTerm}/maxsalary/{_maxsalary}");
+
+    private void ClearSearchFilter()
+    {
+        _maxsalary = 0;
+        NavManager.NavigateTo($"/search/{SearchTerm}");
+    }
+}

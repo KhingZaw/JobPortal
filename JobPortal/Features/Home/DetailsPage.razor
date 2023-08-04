@@ -1,0 +1,85 @@
+﻿@page "/detail/{id:int}"
+@inject HttpClient Http
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+    </ol>
+</nav>
+
+
+<div>
+    <h3>Details</h3>
+    <h6>@_selectedJob.Name</h6>
+    <p>@_selectedJob.Description</p>
+</div>
+
+
+@if ( _jobdescs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+
+    <div>
+        <h3>Job Descriptions</h3>
+
+       @foreach (var jobdesc in _jobdescs)
+         {
+            <p>@jobdesc.description</p>    
+         }
+ 
+    </div>
+}
+
+
+@*@if ( _jobreqs == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<div>
+    <h3>Job Requirements</h3>
+
+   @foreach (var jobreq in _jobreqs)
+     {
+        <p>@jobreq.requirement</p>    
+     }
+ 
+</div>
+}*@
+
+@code {
+
+    [Parameter] public int Id { get; set;}
+
+    private IEnumerable<Jobs>? _jobs;
+    private Jobs _selectedJob ;
+
+    private IEnumerable<JobDescription>? _jobdescs;
+    //private IEnumerable<JobRequirement>? _jobreqs;
+
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+
+            _selectedJob = _jobs.Where(x => x.Id == Id).First();
+
+            _jobdescs = _selectedJob.JobDescriptions;
+            //_jobreqs = _selectedJob.JobRequirements;
+
+            
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading job data: {ex.Message}");
+        }
+    }
+}

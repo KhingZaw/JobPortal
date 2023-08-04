@@ -1,0 +1,75 @@
+﻿@page "/search/{SearchTerm}"
+@page "/search/{SearchTerm}/maxsalary/{MaxSalary:int}"
+@inject HttpClient Http
+@inject NavigationManager NavManager
+
+
+<PageTitle>Search Jobs</PageTitle>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Search</li>
+    </ol>
+</nav>
+
+<h5 class="mt-5 mb-4">Search results for "@SearchTerm"</h5>
+
+<SearchFilter SearchTerm="@SearchTerm" />
+
+@if (_searchResults == null)
+{
+    <p>Loading search results...</p>
+}
+else
+{
+    <div class="grid">
+        @foreach (var job in _searchResults)
+        {
+            <JobCard Job="job" OnSelected="HandleJobSelected" />
+        }
+    </div>
+}
+
+@code {
+    private IEnumerable<Jobs>? _searchResults;
+    private IEnumerable<Jobs> _cachedSearchResults = Array.Empty<Jobs>();
+
+    [Parameter] public string SearchTerm { get; set; } = default!;
+    [Parameter] public int? MaxSalary { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var allJobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+            _searchResults = allJobs!.Where(x => x.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase)
+                                            || x.Location.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase));
+            _cachedSearchResults = _searchResults;
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading trail data: {ex.Message}");
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        if (_cachedSearchResults.Any() && MaxSalary.HasValue)
+        {
+            _searchResults = _cachedSearchResults.Where(x => x.Salary  <= MaxSalary.Value);
+        }
+        else if (_cachedSearchResults.Any() && MaxSalary is null)
+        {
+            _searchResults = _cachedSearchResults;
+        }
+    }
+
+    private void HandleJobSelected(Jobs job)
+    {
+        string url = "";
+        url = "/detail/" + job.Id.ToString();
+        NavManager.NavigateTo(url);
+
+    }
+}

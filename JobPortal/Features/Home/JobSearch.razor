@@ -1,0 +1,25 @@
+﻿@inject NavigationManager NavManager
+
+<div class="jumbotron">
+    <h3 class="display-4 text-center">Welcome to JobPortal</h3>
+    <p class="lead text-center">Find the most jobs search!</p>
+    <p class="mt-4">
+        <input @onkeydown="SearchForJobs"
+        @bind="_searchTerm"
+        @bind:event="oninput"
+               type="text"
+               placeholder="Search for a job..."
+               class="form-control form-control-lg" />
+    </p>
+</div>
+
+@code {
+    private string _searchTerm = "";
+
+    private void SearchForJobs(KeyboardEventArgs args)
+    {
+        if (args.Key != "Enter") return;
+
+        NavManager.NavigateTo($"/search/{_searchTerm}");
+    }
+}
