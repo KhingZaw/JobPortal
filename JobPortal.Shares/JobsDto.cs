@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobPortal.Shares
+namespace JobPortal.Shared
 {
     internal class JobsDto
     {

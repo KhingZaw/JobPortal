@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal", "JobPortal\JobP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Api", "JobPortal.Api\JobPortal.Api.csproj", "{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Shares", "JobPortal.Shares\JobPortal.Shares.csproj", "{8874BE08-DE08-442D-83D4-C3D9A4357D36}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Shared", "JobPortal.Shares\JobPortal.Shared.csproj", "{8874BE08-DE08-442D-83D4-C3D9A4357D36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
