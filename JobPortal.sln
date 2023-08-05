@@ -5,6 +5,10 @@ VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal", "JobPortal\JobPortal.csproj", "{4C4B1ED4-09F2-4D72-9763-7AE28DA031A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Api", "JobPortal.Api\JobPortal.Api.csproj", "{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Shares", "JobPortal.Shares\JobPortal.Shares.csproj", "{8874BE08-DE08-442D-83D4-C3D9A4357D36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{4C4B1ED4-09F2-4D72-9763-7AE28DA031A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C4B1ED4-09F2-4D72-9763-7AE28DA031A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C4B1ED4-09F2-4D72-9763-7AE28DA031A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8874BE08-DE08-442D-83D4-C3D9A4357D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8874BE08-DE08-442D-83D4-C3D9A4357D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8874BE08-DE08-442D-83D4-C3D9A4357D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8874BE08-DE08-442D-83D4-C3D9A4357D36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

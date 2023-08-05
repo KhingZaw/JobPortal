@@ -1,0 +1,20 @@
+﻿using JobPortal.Api.Persistence.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace JobPortal.Api.Persistence;
+
+public class JobPortalContext : DbContext
+{
+    public DbSet<Jobs> Jobs => Set<Jobs>();
+    public DbSet<RouteInstruction> RouteInstructions => Set<RouteInstruction>();
+
+    public JobPortalContext(DbContextOptions<JobPortalContext> options) : base(options) { }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.ApplyConfiguration(new JobsConfig());
+        modelBuilder.ApplyConfiguration(new RouteInstructionConfig());
+    }
+}
