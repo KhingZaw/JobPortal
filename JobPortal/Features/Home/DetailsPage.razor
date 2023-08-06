@@ -1,12 +1,24 @@
 ﻿@page "/detail/{id:int}"
 @inject HttpClient Http
 
-
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/">Home</a></li>
     </ol>
 </nav>
+
+@if (_selectedJob is not null)
+{
+@*<div class="drawer-content">
+ <div class="job-details">*@
+<h3>@_selectedJob.Name</h3>
+<h6 class="mb-3 text-muted"><span class="oi oi-map-marker"></span> @_selectedJob.Location</h6>
+<div class="mt-4">
+    <p> <i class="bi bi-calendar"> </i> @_selectedJob.CreatedDate </p>
+    <p> <i class="bi bi-clock"> </i> @_selectedJob.CreatedTime &nbsp </p>
+    @*<p><i class="bi bi-currency-dollar"> </i> @_selectedJob.Salary </p>*@
+</div>
+}
 
 @if ( _jobdescs == null)
 {
@@ -15,14 +27,14 @@
 else
 {
 
-    <div>
+    <div class="descriptions-container">
         <h3>Job Descriptions</h3>
-
+        <ul>
        @foreach (var jobdesc in _jobdescs)
          {
-            <p>@jobdesc.description</p>    
+            <li>@jobdesc.description</li>    
          }
- 
+        </ul>
     </div>
 }
 
@@ -33,14 +45,14 @@ else
 }
 else
 {
-    <div>
+    <div class="descriptions-container">
         <h3>Job Requirements</h3>
-
+        <ul>
         @foreach (var jobreq in _jobreqs)
         {
-            <p>@jobreq.requirement</p>
+            <li>@jobreq.requirement</li>
         }
-
+        </ul>
     </div>
 }
 
