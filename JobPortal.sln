@@ -4,10 +4,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal", "JobPortal\JobPortal.csproj", "{4C4B1ED4-09F2-4D72-9763-7AE28DA031A9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8874BE08-DE08-442D-83D4-C3D9A4357D36} = {8874BE08-DE08-442D-83D4-C3D9A4357D36}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Api", "JobPortal.Api\JobPortal.Api.csproj", "{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal.Api", "JobPortal.Api\JobPortal.Api.csproj", "{FFD5EDDC-7058-4BCD-AA7E-2CED797A3D58}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4C4B1ED4-09F2-4D72-9763-7AE28DA031A9} = {4C4B1ED4-09F2-4D72-9763-7AE28DA031A9}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobPortal.Shared", "JobPortal.Shares\JobPortal.Shared.csproj", "{8874BE08-DE08-442D-83D4-C3D9A4357D36}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobPortal.Shared", "JobPortal.Shares\JobPortal.Shared.csproj", "{8874BE08-DE08-442D-83D4-C3D9A4357D36}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,3 +1,4 @@
+using FluentValidation;
 using JobPortal.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,9 @@ namespace JobPortal.Api
 
             // Add services to the container.
             builder.Services.AddDbContext<JobPortalContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("JobPortalContext")));
+
+            builder.Services.AddScoped<IValidator<JobPortal.Shared.Features.ManageJobs.JobsDto>, JobPortal.Shared.Features.ManageJobs.JobsValidator>();
+
 
             builder.Services.AddControllers();
             //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
