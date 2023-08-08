@@ -6,7 +6,8 @@ namespace JobPortal.Api.Persistence;
 public class JobPortalContext : DbContext
 {
     public DbSet<Jobs> Jobs => Set<Jobs>();
-    public DbSet<RouteInstruction> RouteInstructions => Set<RouteInstruction>();
+    public DbSet<JobDescription> JobDescriptions => Set<JobDescription>();
+    public DbSet<JobRequirement> JobRequirements => Set<JobRequirement>();
 
     public JobPortalContext(DbContextOptions<JobPortalContext> options) : base(options) { }
 
@@ -15,6 +16,7 @@ public class JobPortalContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.ApplyConfiguration(new JobsConfig());
-        modelBuilder.ApplyConfiguration(new RouteInstructionConfig());
+        modelBuilder.ApplyConfiguration(new JobDescriptionConfig());
+        modelBuilder.ApplyConfiguration(new JobRequirementConfig());
     }
 }
