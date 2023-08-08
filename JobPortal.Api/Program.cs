@@ -1,6 +1,7 @@
 using FluentValidation;
 using JobPortal.Api.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace JobPortal.Api
 {
@@ -31,7 +32,13 @@ namespace JobPortal.Api
             app.UseHttpsRedirection();
 
             app.UseBlazorFrameworkFiles();
-            app.UseStaticFiles();
+            //app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Images")),
+                RequestPath = new Microsoft.AspNetCore.Http.PathString("/Images")
+            });
+
 
             app.UseAuthorization();
 

@@ -41,11 +41,13 @@ namespace JobPortal.Shared.Features.ManageJobs
 
         public IEnumerable<JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
         public IEnumerable<JobRequirement> JobRequirements { get; set; } = Array.Empty<JobRequirement>();
-    }
-    public class JobDescription
-    {
-        public int desc_id { get; set; }
-        public string description { get; set; } = "";
+
+        public class JobDescription
+        {
+            public int desc_id { get; set; }
+            public int Stage { get; set; }
+            public string description { get; set; } = "";
+        }
     }
 
     public class JobRequirement
@@ -62,17 +64,17 @@ namespace JobPortal.Shared.Features.ManageJobs
             RuleFor(x => x.Description).NotEmpty().WithMessage("Please enter a description");
             RuleFor(x => x.Location).NotEmpty().WithMessage("Please enter a location");
             RuleFor(x => x.Salary).GreaterThan(0).WithMessage("Please enter a length");
-            //RuleForEach(x => x.Route).SetValidator(new RouteInstructionValidator());
+            RuleForEach(x => x.JobDescriptions).SetValidator(new JobDescriptionValidator());
         }
     }
 
-    //public class RouteInstructionValidator : AbstractValidator<JobsDto.RouteInstruction>
-    //{
-    //    public RouteInstructionValidator()
-    //    {
-    //        RuleFor(x => x.Stage).NotEmpty().WithMessage("Please enter a stage");
-    //        RuleFor(x => x.Description).NotEmpty().WithMessage("Please enter a description");
-    //    }
-    //}
+    public class JobDescriptionValidator : AbstractValidator<JobsDto.JobDescription>
+    {
+        public JobDescriptionValidator()
+        {
+            RuleFor(x => x.Stage).NotEmpty().WithMessage("Please enter a stage");
+            RuleFor(x => x.description).NotEmpty().WithMessage("Please enter a description");
+        }
+    }
 
 }
