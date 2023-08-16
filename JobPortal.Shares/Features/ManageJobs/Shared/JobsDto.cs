@@ -44,15 +44,15 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
         public ImageAction ImageAction { get; set; }
 
         public List<JobDescription> JobDescriptions { get; set; } = new List<JobDescription>();
-        
+
+        public List<JobRequirement> JobRequirements { get; set; } = new List<JobRequirement>();
+
         public class JobDescription
         {
             public int Id { get; set; }
             public int Stage { get; set; }
             public string Description { get; set; } = "";
         }
-
-        public List<JobRequirement> JobRequirements { get; set; } = new List<JobRequirement>();
 
         public class JobRequirement
         {

@@ -54,10 +54,16 @@ else
             _job.Salary = response.Jobs.Salary;
             //_job.TimeInMinutes = response.Jobs.TimeInMinutes;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
-            {
-                Stage = ri.Stage,
-                Description = ri.Description
-            }));
+                {
+                    Stage = ri.Stage,
+                    Description = ri.Description
+                }));
+
+            _job.JobRequirements.AddRange(response.Jobs.JobRequirements.Select(ri => new JobsDto.JobRequirement
+                {
+                    Stage = ri.Stage,
+                    Requirement = ri.Requirement
+                }));
         }
         else
         {
@@ -89,6 +95,12 @@ else
                 Stage = ri.Stage,
                 Description = ri.Description
             }));
+            _job.JobRequirements.AddRange(job.JobRequirements.Select(ri => new JobsDto.JobRequirement
+
+                {
+                    Stage = ri.Stage,
+                    Requirement = ri.Requirement
+                }));
 
             _submitSuccessful = true;
 

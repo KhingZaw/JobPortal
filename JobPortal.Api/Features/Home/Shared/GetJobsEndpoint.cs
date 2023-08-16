@@ -18,7 +18,7 @@ namespace JobPortal.Api.Features.Home.Shared
         [HttpGet(GetJobsRequest.RouteTemplate)]
         public override async Task<ActionResult<GetJobsRequest.Response>> HandleAsync(int jobsId, CancellationToken cancellationToken = default)
         {
-            var jobs = await _context.Jobs.Include(x => x.JobDescriptions).ToListAsync(cancellationToken);
+            var jobs = await _context.Jobs.Include(x => x.JobDescriptions).Include(x => x.JobRequirements).ToListAsync(cancellationToken);
 
             //var jobs = await _context.Jobs.Include(x => x.JobRequirements).ToListAsync(cancellationToken);
 

@@ -18,7 +18,10 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
         [HttpGet(GetJobRequest.RouteTemplate)]
         public override async Task<ActionResult<GetJobRequest.Response>> HandleAsync(int jobsId, CancellationToken cancellationToken = default)
         {
-            var jobs = await _context.Jobs.Include(x => x.JobDescriptions).SingleOrDefaultAsync(x => x.Id == jobsId, cancellationToken: cancellationToken);
+                var jobs = await _context.Jobs.Include(x => x.JobDescriptions)
+                .Include(x=>x.JobRequirements)
+                .SingleOrDefaultAsync(x => x.Id == jobsId, cancellationToken: cancellationToken);
+
 
             //var jobs = await _context.Jobs.Include(x => x.JobRequirements).SingleOrDefaultAsync(x => x.Id == jobsId, cancellationToken: cancellationToken);
 
@@ -27,7 +30,7 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 return BadRequest("Job could not be found.");
             }
 
-            var response = new GetJobRequest.Response( new GetJobRequest.Jobs(
+            var response = new GetJobRequest.Response(new GetJobRequest.Jobs(
                 jobs.Id,
                 jobs.Name,
                 jobs.Image,
@@ -43,6 +46,7 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.Salary,
                 jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
                 jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.Id, ri.Stage, ri.Requirement))));
+
             //jobs.TimeInMinutes,
 
 

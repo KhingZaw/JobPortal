@@ -20,8 +20,13 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
     [HttpPut(EditJobRequest.RouteTemplate)]
     public override async Task<ActionResult<bool>> HandleAsync(EditJobRequest request, CancellationToken cancellationToken = default)
     {
-        var job = await _database.Jobs.Include(x => x.JobDescriptions).SingleOrDefaultAsync(x => x.Id == request.Job.Id, cancellationToken: cancellationToken);
-        //var job = await _database.Jobs.Include(x => x.JobRequirements).SingleOrDefaultAsync(x => x.Id == request.Job.JobsId, cancellationToken: cancellationToken);
+        //var job = await _database.Jobs.Include(x => x.JobDescriptions).SingleOrDefaultAsync(x => x.Id == request.Job.Id, cancellationToken: cancellationToken);
+
+        //var job = await _database.Jobs.Include(x => x.JobRequirements).SingleOrDefaultAsync(x => x.Id == request.Job.Id, cancellationToken: cancellationToken);
+
+        var job = await _database.Jobs.Include(x => x.JobDescriptions)
+            .Include(x => x.JobRequirements)
+            .SingleOrDefaultAsync(x => x.Id == request.Job.Id, cancellationToken: cancellationToken);
 
         if (job is null)
         {
@@ -39,6 +44,13 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
             Description = ri.Description,
             Jobs = job
         }).ToList();
+        job.JobRequirements = request.Job.JobRequirements.Select(ri => new JobRequirement
+        {
+            Stage = ri.Stage,
+            Requirement = ri.Requirement,
+            Jobs = job
+        }).ToList();
+
 
         if (request.Job.ImageAction == ImageAction.Remove)
         {
