@@ -18,7 +18,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
 
             modelBuilder.Entity("JobPortal.Api.Persistence.Entities.JobDescription", b =>
                 {
-                    b.Property<int>("desc_id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -32,7 +32,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                     b.Property<int>("Stage")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("desc_id");
+                    b.HasKey("Id");
 
                     b.HasIndex("JobsId");
 
@@ -41,21 +41,21 @@ namespace JobPortal.Api.Persistence.Data.Migrations
 
             modelBuilder.Entity("JobPortal.Api.Persistence.Entities.JobRequirement", b =>
                 {
-                    b.Property<int>("require_id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("JobsId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Stage")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("requirement")
+                    b.Property<string>("Requirement")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.HasKey("require_id");
+                    b.Property<int>("Stage")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("JobsId");
 
@@ -89,7 +89,6 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("JobType")

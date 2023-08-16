@@ -1,7 +1,7 @@
-﻿using JobPortal.Shared.Features.ManageJobs;
+﻿using JobPortal.Shared.Features.ManageJobs.Shared;
 using MediatR;
 
-namespace JobPortal.Client.Features.ManageJobs;
+namespace JobPortal.Features.ManageJobs.Shared;
 
 public class UploadJobImageHandler : IRequestHandler<UploadJobImageRequest, UploadJobImageRequest.Response>
 {
@@ -16,8 +16,10 @@ public class UploadJobImageHandler : IRequestHandler<UploadJobImageRequest, Uplo
     {
         var fileContent = request.File.OpenReadStream(request.File.Size, cancellationToken);
 
-        using var content = new MultipartFormDataContent();
-        content.Add(new StreamContent(fileContent), "image", request.File.Name);
+        using var content = new MultipartFormDataContent
+        {
+            { new StreamContent(fileContent), "image", request.File.Name }
+        };
 
         var response = await _httpClient.PostAsync(UploadJobImageRequest.RouteTemplate.Replace("{jobId}", request.JobId.ToString()), content, cancellationToken);
 

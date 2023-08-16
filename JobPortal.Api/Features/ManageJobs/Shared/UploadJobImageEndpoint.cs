@@ -1,13 +1,11 @@
 ﻿using Ardalis.ApiEndpoints;
 using JobPortal.Api.Persistence;
-using JobPortal.Shared.Features.ManageJobs;
+using JobPortal.Shared.Features.ManageJobs.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
-using System.Drawing;
 
-namespace JobPortal.Api.Features.ManageJobs
+namespace JobPortal.Api.Features.ManageJobs.Shared
 {
     public class UploadJobImageEndpoint : BaseAsyncEndpoint.WithRequest<int>.WithResponse<string>
     {
@@ -39,10 +37,10 @@ namespace JobPortal.Api.Features.ManageJobs
             var resizeOptions = new ResizeOptions
             {
                 Mode = ResizeMode.Pad,
-                Size = new SixLabors.ImageSharp.Size(640, 426)
+                Size = new Size(640, 426)
             };
 
-            using var image = SixLabors.ImageSharp.Image.Load(file.OpenReadStream());
+            using var image = Image.Load(file.OpenReadStream());
             image.Mutate(x => x.Resize(resizeOptions));
             await image.SaveAsJpegAsync(saveLocation, cancellationToken: cancellationToken);
 

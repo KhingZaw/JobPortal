@@ -6,12 +6,11 @@ using System.ComponentModel.DataAnnotations;
 namespace JobPortal.Api.Persistence.Entities;
 public class Jobs
 {
-    [Key]
     public int Id { get; set; }
 
     public string Name { get; set; } = "";
 
-    public string Image { get; set; } = "";
+    public string? Image { get; set; }
 
     public string FrameworkName { get; set; } = "";
 
@@ -29,16 +28,17 @@ public class Jobs
 
     public string Opento { get; set; } = "";
 
-    public int Salary { get; set; } = 0;
+    public int Salary { get; set; }
 
     public string SourceName { get; set; } = "";
 
     public string Location { get; set; } = "";
 
     public string Description { get; set; } = "";
-
-    public IEnumerable<JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
-    public IEnumerable<JobRequirement> JobRequirements { get; set; } = Array.Empty<JobRequirement>();
+    public ICollection<JobDescription> JobDescriptions { get; set; } = default!;
+    //public IEnumerable<JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
+    public ICollection<JobRequirement> JobRequirements { get; set; } = default!;
+    //public IEnumerable<JobRequirement> JobRequirements { get; set; } = Array.Empty<JobRequirement>();
 }
 
 public class JobsConfig : IEntityTypeConfiguration<Jobs>

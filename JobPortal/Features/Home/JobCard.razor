@@ -1,7 +1,10 @@
-﻿<div class="parent_card">
+﻿@inject NavigationManager NavManager
+
+<div class="parent_card">
     <div class="card shadow" style="">
         <div class=" card-left bule-bg">
-            <img src="@Job.Image" class="card_img_left" alt="@Job.Name"/>
+            @*<img src="@Job.Image" class="card_img_left" /> alt="@Job.Name"*@
+             <img src="@(!string.IsNullOrWhiteSpace(Job.Image) ? $"images/{Job.Image}" : "https://via.placeholder.com/286x190.jpg?text=No+Image+For+Job")" class="card_img_left">
         </div>
             <div class="card_center">
                 <h5 class="card-name">@Job.Name</h5>
@@ -12,11 +15,14 @@
                 <span class="oi oi-map-marker"> </span> @Job.Location &nbsp;
                 <i class="bi bi-calendar"> </i> @Job.CreatedDate &nbsp;
                 <i class="bi bi-clock"> </i> @Job.CreatedTime &nbsp;
-                @*<i class="bi bi-coin"> </i> @Job.Salary*@
+                <i class="bi bi-coin"> </i> @Job.Salary
                </div>
             <div class="d-flex justify-content-between mb-3">
                 <button class="btn btn-primary" title="View" @onclick="@(async () => await OnSelected.InvokeAsync(Job))">
                   <i class="bi bi-binoculars"></i>
+                </button>
+                <button class="btn btn-outline-secondary float-right" title="Edit" @onclick="@(() => NavManager.NavigateTo($"/edit-job/{Job.Id}"))">
+                    <i class="bi bi-pencil"></i>
                 </button>
             </div>
         </div>

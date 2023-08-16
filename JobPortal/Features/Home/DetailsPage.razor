@@ -1,5 +1,7 @@
 ﻿@page "/detail/{id:int}"
+@using JobPortal.Shared.Features.Home.Shared;
 @inject HttpClient Http
+@inject IMediator Mediator
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -11,12 +13,13 @@
 {
 @*<div class="drawer-content">
  <div class="job-details">*@
-<h3>@_selectedJob.Name</h3>
-<h6 class="mb-3 text-muted"><span class="oi oi-map-marker"></span> @_selectedJob.Location</h6>
-<div class="mt-4">
-    <p> <i class="bi bi-calendar"> </i> @_selectedJob.CreatedDate </p>
-    <p> <i class="bi bi-clock"> </i> @_selectedJob.CreatedTime &nbsp </p>
-    @*<p><i class="bi bi-currency-dollar"> </i> @_selectedJob.Salary </p>*@
+    <img src="@(!string.IsNullOrWhiteSpace(_selectedJob.Image) ? $"images/{_selectedJob.Image}" : "https://via.placeholder.com/640x426.jpg?text=No+Image+For+Job")" />
+    <h3>@_selectedJob.Name</h3>
+    <h6 class="mb-3 text-muted"><span class="oi oi-map-marker"></span> @_selectedJob.Location</h6>
+    <div class="mt-4">
+    @*<p> <i class="bi bi-calendar"> </i> @_selectedJob.CreatedDate </p>
+    <p> <i class="bi bi-clock"> </i> @_selectedJob.CreatedTime &nbsp </p>*@
+    <p><i class="bi bi-currency-dollar"> </i> @_selectedJob.Salary </p>
 </div>
 }
 
@@ -32,7 +35,7 @@ else
         <ul>
        @foreach (var jobdesc in _jobdescs)
          {
-            <li>@jobdesc.description</li>    
+            <li>@jobdesc.Description</li>    
          }
         </ul>
     </div>
@@ -50,7 +53,7 @@ else
         <ul>
         @foreach (var jobreq in _jobreqs)
         {
-            <li>@jobreq.requirement</li>
+            <li>@jobreq.Requirement</li>
         }
         </ul>
     </div>
@@ -74,7 +77,19 @@ else
     {
         try
         {
-           var _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+           //var _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+            var response = await Mediator.Send(new GetJobsRequest());
+            var _jobs = response.Jobs.Select(x => new Jobs
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Location = x.Location,
+                    Salary = x.Salary,
+                    Image = x.Image,
+                    Description = x.Description,
+                    
+                    //TimeInMinutes = x.TimeInMinutes
+                });
 
             _selectedJob = _jobs!.Where(x => x.Id == Id).First();
 

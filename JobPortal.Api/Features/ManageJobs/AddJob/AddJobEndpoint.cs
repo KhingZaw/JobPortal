@@ -1,11 +1,11 @@
 ﻿using Ardalis.ApiEndpoints;
 using JobPortal.Api.Persistence;
 using JobPortal.Api.Persistence.Entities;
-using JobPortal.Shared.Features.ManageJobs;
+using JobPortal.Shared.Features.ManageJobs.AddJob;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace JobPortal.Api.Features.ManageJobs;
+namespace JobPortal.Api.Features.ManageJobs.AddJob;
 
 public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithResponse<int>
 {
@@ -33,11 +33,22 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
         var jobdescriptions = request.Jobs.JobDescriptions.Select(x => new JobDescription
         {
             Stage = x.Stage,
-            Description = x.description,
+            Description = x.Description,
+            Jobs = job
+        });
+
+        await _database.Jobs.AddAsync(job, cancellationToken);
+
+        var jobrequirements = request.Jobs.JobRequirements.Select(x => new JobRequirement
+        {
+            Stage = x.Stage,
+            Requirement = x.Requirement,
             Jobs = job
         });
 
         await _database.JobDescriptions.AddRangeAsync(jobdescriptions, cancellationToken);
+        await _database.JobRequirements.AddRangeAsync(jobrequirements, cancellationToken);
+
         await _database.SaveChangesAsync(cancellationToken);
 
         return Ok(job.Id);

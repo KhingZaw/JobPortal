@@ -13,4 +13,10 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.5" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Features\ManageJobs\EditJob\GetJobRequest.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

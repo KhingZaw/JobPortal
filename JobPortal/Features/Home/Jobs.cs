@@ -6,7 +6,7 @@
 
         public string Name { get; set; } = "";
 
-        public string Image { get; set; } = "";
+        public string? Image { get; set; }
 
         public string FrameworkName { get; set; } = "";
 
@@ -24,7 +24,7 @@
 
         public string Opento { get; set; } = "";
 
-        public int Salary { get; set; } = 0;
+        public int Salary { get; set; }
 
         public string SourceName { get; set; } = "";
 
@@ -37,14 +37,18 @@
     }
     public class JobDescription
     {
-        public int desc_id { get; set; }
-        public string description { get; set; } = "";
+        public int Id { get; set; }
+        public int JobsId { get; set; }
+        public int Stage { get; set; }
+        public string Description { get; set; } = "";
     }
 
     public class JobRequirement
     {
-        public int require_id { get; set; }
-        public string requirement { get; set; } = "";
+        public int Id { get; set; }
+        public int JobsId { get; set; }
+        public int Stage { get; set; }
+        public string Requirement { get; set; } = "";
     }
 
 }

@@ -1,7 +1,8 @@
 ﻿using FluentValidation;
+using JobPortal.Shared.Features.ManageJobs.Shared;
 using MediatR;
 
-namespace JobPortal.Shared.Features.ManageJobs;
+namespace JobPortal.Shared.Features.ManageJobs.AddJob;
 
 public record AddJobRequest(JobsDto Jobs) : IRequest<AddJobRequest.Response>
 {

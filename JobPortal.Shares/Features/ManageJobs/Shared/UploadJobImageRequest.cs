@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobPortal.Shared.Features.ManageJobs
+namespace JobPortal.Shared.Features.ManageJobs.Shared
 {
     public record UploadJobImageRequest(int JobId, IBrowserFile File) : IRequest<UploadJobImageRequest.Response>
     {

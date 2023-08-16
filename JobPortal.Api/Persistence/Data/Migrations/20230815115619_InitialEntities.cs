@@ -17,7 +17,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", nullable: false),
-                    Image = table.Column<string>(type: "TEXT", nullable: false),
+                    Image = table.Column<string>(type: "TEXT", nullable: true),
                     FrameworkName = table.Column<string>(type: "TEXT", nullable: false),
                     PLanguage = table.Column<string>(type: "TEXT", nullable: false),
                     EmployerName = table.Column<string>(type: "TEXT", nullable: false),
@@ -40,7 +40,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                 name: "JobDescriptions",
                 columns: table => new
                 {
-                    desc_id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     JobsId = table.Column<int>(type: "INTEGER", nullable: false),
                     Stage = table.Column<int>(type: "INTEGER", nullable: false),
@@ -48,7 +48,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobDescriptions", x => x.desc_id);
+                    table.PrimaryKey("PK_JobDescriptions", x => x.Id);
                     table.ForeignKey(
                         name: "FK_JobDescriptions_Jobs_JobsId",
                         column: x => x.JobsId,
@@ -61,15 +61,15 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                 name: "JobRequirements",
                 columns: table => new
                 {
-                    require_id = table.Column<int>(type: "INTEGER", nullable: false)
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     JobsId = table.Column<int>(type: "INTEGER", nullable: false),
                     Stage = table.Column<int>(type: "INTEGER", nullable: false),
-                    requirement = table.Column<string>(type: "TEXT", nullable: false)
+                    Requirement = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_JobRequirements", x => x.require_id);
+                    table.PrimaryKey("PK_JobRequirements", x => x.Id);
                     table.ForeignKey(
                         name: "FK_JobRequirements_Jobs_JobsId",
                         column: x => x.JobsId,

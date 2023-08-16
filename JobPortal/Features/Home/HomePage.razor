@@ -1,6 +1,8 @@
 ﻿@page "/"
+@using JobPortal.Shared.Features.Home.Shared;
 @inject HttpClient Http
 @inject NavigationManager NavManager
+@inject IMediator Mediator
 
 <PageTitle>JobPortal</PageTitle>
 
@@ -11,6 +13,8 @@
 }
 else
 {
+    <h3 class="font-weight-light"> <a href="add-job">Add Job</a></h3>
+
     <JobSearch /> 
 
     <div class="grid">
@@ -25,17 +29,38 @@ else
 
     private IEnumerable<Jobs>? _jobs;
 
+    //protected override async Task OnInitializedAsync()
+    //{   
+    //    try
+    //    {
+    //        _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+    //    }
+    //    catch (HttpRequestException ex)
+    //    {
+    //        Console.WriteLine($"There was a problem loading job data: {ex.Message}");
+    //    }
+
+    //}
     protected override async Task OnInitializedAsync()
-    {   
+    {
         try
         {
-            _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+            var response = await Mediator.Send(new GetJobsRequest());
+            _jobs = response.Jobs.Select(x => new Jobs
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    Image = x.Image,
+                    Description = x.Description,
+                    Location = x.Location,
+                    Salary = x.Salary,
+                    //TimeInMinutes = x.TimeInMinutes
+                });
         }
         catch (HttpRequestException ex)
         {
             Console.WriteLine($"There was a problem loading job data: {ex.Message}");
         }
-
     }
     private void HandleJobSelected(Jobs job)
     {
