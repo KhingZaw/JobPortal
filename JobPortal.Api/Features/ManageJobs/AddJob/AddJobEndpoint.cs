@@ -33,7 +33,7 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
         var jobdescriptions = request.Jobs.JobDescriptions.Select(x => new JobDescription
         {
             Stage = x.Stage,
-            Description = x.Description,
+            Descriptions = x.Descriptions,
             Jobs = job
         });
 

@@ -71,8 +71,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="jobDescriptionDescription" class="font-weight-bold text-secondary">Description</label>
-                        <InputText @bind-Value="jobDescriptions.Description" class="form-control" id="jobDescriptionDescription" />
-                        <ValidationMessage For="@(() => jobDescriptions.Description)" />
+                        <InputText @bind-Value="jobDescriptions.Descriptions" class="form-control" id="jobDescriptionDescription" />
+                        <ValidationMessage For="@(() => jobDescriptions.Descriptions)" />
                     </div>
                 </div>
                 <div class="col-1 d-flex mt-3">
@@ -87,7 +87,7 @@
 
         <div class="row">
             <div class="col">
-                <button class="btn btn-outline-primary" type="button" @onclick="@(() => _job.JobDescriptions.Add(new JobsDto.JobDescription()))">Add Description</button>
+                <button class="btn btn-outline-primary" type="button" @onclick="@(() => _job.JobDescriptions.Add(new JobsDto.JobDescription()))">Add Descriptions</button>
                 <ValidationMessage For="@(() => _job.JobDescriptions)" />
             </div>
         </div>
@@ -178,7 +178,7 @@
             _job.JobDescriptions.AddRange(Job.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,
-                    Description = ri.Description
+                    Descriptions = ri.Descriptions
                 }));
             _job.JobRequirements.Clear();
             _job.JobRequirements.AddRange(Job.JobRequirements.Select(ri => new JobsDto.JobRequirement

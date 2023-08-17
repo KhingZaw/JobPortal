@@ -27,7 +27,7 @@ public record GetJobRequest(int JobsId) : IRequest<GetJobRequest.Response>
     public record JobDescription(
         int Id, 
         int Stage, 
-        string Description);
+        string Descriptions);
     public record JobRequirement(
         int Id,
         int Stage, 

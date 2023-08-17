@@ -1,0 +1,95 @@
+﻿@page "/detail/{JobsId:int}"
+@inject IMediator Mediator
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">DetailsJobPage</li>
+    </ol>
+</nav>
+
+@if (_isLoading)
+{
+    <p>Loading job...</p>
+}
+else
+{
+    <h3 class="mt-5 mb-4">@_job.Name</h3>
+
+    <img src="@(!string.IsNullOrWhiteSpace(_job.Image) ? $"images/{_job.Image}" : "https://via.placeholder.com/640x426.jpg?text=No+Image+For+Job")" />
+
+    <h6 class="mb-3 text-muted"><span class="oi oi-map-marker"></span> @_job.Location</h6>
+
+    <div class="mt-4">
+        <p> <i class="bi bi-calendar"> </i> @_job.CreatedDate </p>
+        <p> <i class="bi bi-clock"> </i> @_job.CreatedTime &nbsp </p>
+        <p><i class="bi bi-currency-dollar"> </i> @_job.Salary </p>
+    </div>
+    @*@if (_submitSuccessful)
+    {
+        <SuccessAlert Message="Your job has been edited successfully!" />
+    }*@
+    @if (_errorMessage is not null)
+    {
+        <ErrorAlert Message="@_errorMessage" />
+    }
+
+    {
+        <h3>Job Description</h3>
+        <ul>
+            <li>@_job.</li>
+        </ul>
+    }
+    {
+        <h3>Job Requirement</h3>
+        <ul>
+            <li>@_job.JobRequirements</li>
+        </ul>
+    }
+}
+@code {
+
+    private bool _isLoading;
+    //private bool _submitSuccessful;
+    private string? _errorMessage;
+    private JobsDto _job = new JobsDto();
+
+    [Parameter] public int JobsId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isLoading = true;
+
+        var response = await Mediator.Send(new GetJobRequest(JobsId));
+
+        if (response.Jobs is not null)
+        {
+            _job.Id = JobsId;
+            _job.Name = response.Jobs.Name;
+            _job.Description = response.Jobs.Description;
+            _job.Location = response.Jobs.Location;
+            //_job.CreatedDate = response.Jobs.CreatedDate;
+            _job.Image = response.Jobs.Image;
+            _job.Salary = response.Jobs.Salary;
+            //_job.TimeInMinutes = response.Jobs.TimeInMinutes;
+            _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
+                {
+                    Stage = ri.Stage,
+                    Descriptions = ri.Descriptions
+                }));
+
+            _job.JobRequirements.AddRange(response.Jobs.JobRequirements.Select(ri => new JobsDto.JobRequirement
+                {
+                    Stage = ri.Stage,
+                    Requirement = ri.Requirement
+                }));
+        }
+        else
+        {
+            _errorMessage = "There was a problem loading the job.";
+        }
+
+        _isLoading = false;
+    }
+    
+}

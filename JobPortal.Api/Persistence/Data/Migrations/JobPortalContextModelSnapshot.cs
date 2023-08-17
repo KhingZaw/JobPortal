@@ -22,7 +22,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Descriptions")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

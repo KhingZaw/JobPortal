@@ -1,8 +1,7 @@
 ﻿@page "/"
-@using JobPortal.Shared.Features.Home.Shared;
-@inject HttpClient Http
 @inject NavigationManager NavManager
 @inject IMediator Mediator
+@using JobPortal.Shared.Features.Home.Shared;
 
 <PageTitle>JobPortal</PageTitle>
 
@@ -28,6 +27,7 @@ else
 @code {
 
     private IEnumerable<Jobs>? _jobs;
+    private Jobs? _selectedjob;
 
     //protected override async Task OnInitializedAsync()
     //{   
@@ -63,11 +63,9 @@ else
         }
     }
     private void HandleJobSelected(Jobs job)
-    {
-        string url = "";
-        url = "/detail/" + job.Id.ToString();
-        NavManager.NavigateTo(url);
-
-    }
+        //string url = "";
+        //url = "/detail/" + job.Id.ToString();
+        //NavManager.NavigateTo(url);
+        => _selectedjob = job;
 
 }

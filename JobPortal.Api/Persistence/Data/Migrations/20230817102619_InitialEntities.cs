@@ -44,7 +44,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     JobsId = table.Column<int>(type: "INTEGER", nullable: false),
                     Stage = table.Column<int>(type: "INTEGER", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                    Descriptions = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

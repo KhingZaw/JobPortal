@@ -40,7 +40,7 @@
         public int Id { get; set; }
         public int JobsId { get; set; }
         public int Stage { get; set; }
-        public string Description { get; set; } = "";
+        public string Descriptions { get; set; } = "";
     }
 
     public class JobRequirement

@@ -44,7 +44,7 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.SourceName,
                 jobs.Description,
                 jobs.Salary,
-                jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
+                jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Descriptions)),
                 jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.Id, ri.Stage, ri.Requirement))));
 
             //jobs.TimeInMinutes,
