@@ -27,7 +27,7 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
 
         public string CreatedDate { get; set; } = "";
 
-        public string CreatedTime { get; set; } = "";
+        public int TimeInMinutes { get; set; }
 
         public string OpentoName { get; set; } = "";
 

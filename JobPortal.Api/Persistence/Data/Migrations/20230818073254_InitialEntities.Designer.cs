@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobPortal.Api.Persistence.Data.Migrations
 {
     [DbContext(typeof(JobPortalContext))]
-    [Migration("20230817102619_InitialEntities")]
+    [Migration("20230818073254_InitialEntities")]
     partial class InitialEntities
     {
         /// <inheritdoc />
@@ -75,10 +75,6 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("CreatedTime")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -124,6 +120,9 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                     b.Property<string>("SourceName")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("TimeInMinutes")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

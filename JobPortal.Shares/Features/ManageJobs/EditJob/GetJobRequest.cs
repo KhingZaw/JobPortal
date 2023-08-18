@@ -15,6 +15,7 @@ public record GetJobRequest(int JobsId) : IRequest<GetJobRequest.Response>
         string PLanguage,
         string EmployerName,
         string JobType,
+        int TimeInMinutes,
         string OpentoName,
         string Opento,
         string SourceName,

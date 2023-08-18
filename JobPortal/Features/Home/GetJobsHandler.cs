@@ -4,11 +4,11 @@ using System.Net.Http.Json;
 
 namespace JobPortal.Features.Home
 {
-    public class GetJobHandler : IRequestHandler<GetJobsRequest, GetJobsRequest.Response?>
+    public class GetJobsHandler : IRequestHandler<GetJobsRequest, GetJobsRequest.Response?>
     {
         private readonly HttpClient _httpClient;
 
-        public GetJobHandler(HttpClient httpClient)
+        public GetJobsHandler(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

@@ -18,7 +18,8 @@
 
         public string CreatedDate { get; set; } = "";
 
-        public string CreatedTime { get; set; } = "";
+        public int TimeInMinutes { get; set; }
+        public string TimeFormatted => $"{TimeInMinutes / 60}h {TimeInMinutes % 60}m";
 
         public string OpentoName { get; set; } = "";
 

@@ -55,12 +55,14 @@ else
             //_job.TimeInMinutes = response.Jobs.TimeInMinutes;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
+                    Id = ri.Id,
                     Stage = ri.Stage,
                     Descriptions = ri.Descriptions
                 }));
 
             _job.JobRequirements.AddRange(response.Jobs.JobRequirements.Select(ri => new JobsDto.JobRequirement
                 {
+                    Id = ri.Id,
                     Stage = ri.Stage,
                     Requirement = ri.Requirement
                 }));

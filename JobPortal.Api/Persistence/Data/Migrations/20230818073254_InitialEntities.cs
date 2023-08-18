@@ -23,7 +23,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                     EmployerName = table.Column<string>(type: "TEXT", nullable: false),
                     JobType = table.Column<string>(type: "TEXT", nullable: false),
                     CreatedDate = table.Column<string>(type: "TEXT", nullable: false),
-                    CreatedTime = table.Column<string>(type: "TEXT", nullable: false),
+                    TimeInMinutes = table.Column<int>(type: "INTEGER", nullable: false),
                     OpentoName = table.Column<string>(type: "TEXT", nullable: false),
                     Opento = table.Column<string>(type: "TEXT", nullable: false),
                     Salary = table.Column<int>(type: "INTEGER", nullable: false),

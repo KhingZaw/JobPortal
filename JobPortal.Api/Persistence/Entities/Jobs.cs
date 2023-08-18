@@ -21,8 +21,7 @@ public class Jobs
     public string JobType { get; set; } = "";
 
     public string CreatedDate { get; set; } = "";
-
-    public string CreatedTime { get; set; } = "";
+    public int TimeInMinutes { get; set; }
 
     public string OpentoName { get; set; } = "";
 
