@@ -71,8 +71,8 @@
                 <div class="col">
                     <div class="form-group">
                         <label for="jobDescriptionDescription" class="font-weight-bold text-secondary">Descriptions</label>
-                        <InputText @bind-Value="jobDescriptions.Descriptions" class="form-control" id="jobDescriptionDescription" />
-                        <ValidationMessage For="@(() => jobDescriptions.Descriptions)" />
+                        <InputText @bind-Value="jobDescriptions.Description" class="form-control" id="jobDescriptionDescription" />
+                        <ValidationMessage For="@(() => jobDescriptions.Description)" />
                     </div>
                 </div>
                 <div class="col-1 d-flex mt-3">
@@ -173,12 +173,12 @@
             _job.Image = Job.Image;
             _job.ImageAction = ImageAction.None;
             _job.Salary = Job.Salary;
-            //_job.TimeInMinutes = Job.TimeInMinutes;
+            _job.TimeInMinutes = Job.TimeInMinutes;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(Job.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,
-                    Descriptions = ri.Descriptions
+                    Description = ri.Description
                 }));
             _job.JobRequirements.Clear();
             _job.JobRequirements.AddRange(Job.JobRequirements.Select(ri => new JobsDto.JobRequirement

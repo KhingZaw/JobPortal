@@ -24,7 +24,7 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
             Name = request.Jobs.Name,
             Description = request.Jobs.Description,
             Location = request.Jobs.Location,
-            //TimeInMinutes = 0,
+            TimeInMinutes = 0,
             Salary = request.Jobs.Salary
         };
 
@@ -33,7 +33,7 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
         var jobdescriptions = request.Jobs.JobDescriptions.Select(x => new JobDescription
         {
             Stage = x.Stage,
-            Descriptions = x.Descriptions,
+            Description = x.Description,
             Jobs = job
         });
 

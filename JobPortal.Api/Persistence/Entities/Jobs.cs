@@ -21,6 +21,7 @@ public class Jobs
     public string JobType { get; set; } = "";
 
     public string CreatedDate { get; set; } = "";
+
     public int TimeInMinutes { get; set; }
 
     public string OpentoName { get; set; } = "";
@@ -31,9 +32,10 @@ public class Jobs
 
     public string SourceName { get; set; } = "";
 
+    public string Description { get; set; } = "";
+
     public string Location { get; set; } = "";
 
-    public string Description { get; set; } = "";
     public ICollection<JobDescription> JobDescriptions { get; set; } = default!;
     //public IEnumerable<JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
     public ICollection<JobRequirement> JobRequirements { get; set; } = default!;

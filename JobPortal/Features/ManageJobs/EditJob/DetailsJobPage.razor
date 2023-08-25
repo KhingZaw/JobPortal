@@ -25,32 +25,33 @@ else
         <p> <i class="bi bi-clock"> </i> @_job.TimeInMinutes &nbsp </p>
         <p><i class="bi bi-currency-dollar"> </i> @_job.Salary </p>
     </div>
-    @*@if (_submitSuccessful)
-    {
-        <SuccessAlert Message="Your job has been edited successfully!" />
-    }*@
+
     @if (_errorMessage is not null)
     {
         <ErrorAlert Message="@_errorMessage" />
     }
 
+    <h3>Job Description</h3>
+
+    @foreach (var jobDescriptions in _job.JobDescriptions)
     {
-        <h3>Job Description</h3>
         <ul>
-            <li>@_job.JobDescriptions</li>
+            <li>@jobDescriptions.Description</li>
         </ul>
     }
+
+    <h3>Job Requirement</h3>
+
+    @foreach (var jobRequirements in _job.JobRequirements)
     {
-        <h3>Job Requirement</h3>
         <ul>
-            <li>@_job.JobRequirements</li>
+            <li>@jobRequirements.Requirement</li>
         </ul>
     }
 }
 @code {
 
     private bool _isLoading;
-    //private bool _submitSuccessful;
     private string? _errorMessage;
     private JobsDto _job = new JobsDto();
 
@@ -74,7 +75,7 @@ else
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,
-                    Descriptions = ri.Descriptions
+                    Description = ri.Description
                 }));
 
             _job.JobRequirements.AddRange(response.Jobs.JobRequirements.Select(ri => new JobsDto.JobRequirement

@@ -28,8 +28,8 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                     Opento = table.Column<string>(type: "TEXT", nullable: false),
                     Salary = table.Column<int>(type: "INTEGER", nullable: false),
                     SourceName = table.Column<string>(type: "TEXT", nullable: false),
-                    Location = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
+                    Description = table.Column<string>(type: "TEXT", nullable: false),
+                    Location = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,7 +44,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     JobsId = table.Column<int>(type: "INTEGER", nullable: false),
                     Stage = table.Column<int>(type: "INTEGER", nullable: false),
-                    Descriptions = table.Column<string>(type: "TEXT", nullable: false)
+                    Description = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {

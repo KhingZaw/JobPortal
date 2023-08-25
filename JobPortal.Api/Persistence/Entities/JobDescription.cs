@@ -9,7 +9,7 @@ namespace JobPortal.Api.Persistence.Entities
         public int Id { get; set; }
         public int JobsId { get; set; }
         public int Stage { get; set; }
-        public string Descriptions { get; set; } = default!;
+        public string Description { get; set; } = default!;
 
         public Jobs Jobs { get; set; } = default!;
     }
@@ -19,7 +19,7 @@ namespace JobPortal.Api.Persistence.Entities
         public void Configure(EntityTypeBuilder<JobDescription> builder)
         {
             builder.Property(x => x.JobsId).IsRequired();
-            builder.Property(x => x.Descriptions).IsRequired();
+            builder.Property(x => x.Description).IsRequired();
         }
     }
 }

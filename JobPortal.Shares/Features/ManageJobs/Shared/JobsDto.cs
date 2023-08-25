@@ -49,14 +49,12 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
 
         public class JobDescription
         {
-            public int Id { get; set; }
             public int Stage { get; set; }
-            public string Descriptions { get; set; } = "";
+            public string Description { get; set; } = "";
         }
 
         public class JobRequirement
         {
-            public int Id { get; set; }
             public int Stage { get; set; }
             public string Requirement { get; set; } = "";
         }
@@ -81,7 +79,7 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
         public JobDescriptionValidator()
         {
             RuleFor(x => x.Stage).NotEmpty().WithMessage("Please enter a stage");
-            RuleFor(x => x.Descriptions).NotEmpty().WithMessage("Please enter a description");
+            RuleFor(x => x.Description).NotEmpty().WithMessage("Please enter a description");
         }
     }
     public class JobRequirementValidator : AbstractValidator<JobsDto.JobRequirement>

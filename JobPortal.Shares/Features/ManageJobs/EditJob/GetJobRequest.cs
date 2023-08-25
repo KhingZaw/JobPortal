@@ -15,20 +15,20 @@ public record GetJobRequest(int JobsId) : IRequest<GetJobRequest.Response>
         string PLanguage,
         string EmployerName,
         string JobType,
-        int TimeInMinutes,
         string OpentoName,
         string Opento,
         string SourceName,
-        string Description,
         string Location,
+        string Description,
+        int TimeInMinutes,
         int Salary,
         IEnumerable<JobDescription> JobDescriptions,
-        IEnumerable<JobRequirement> JobRequirements);/*int TimeInMinutes,*/
+        IEnumerable<JobRequirement> JobRequirements);
 
     public record JobDescription(
         int Id, 
         int Stage, 
-        string Descriptions);
+        string Description);
     public record JobRequirement(
         int Id,
         int Stage, 

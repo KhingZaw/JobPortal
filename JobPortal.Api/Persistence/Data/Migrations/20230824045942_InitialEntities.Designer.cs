@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobPortal.Api.Persistence.Data.Migrations
 {
     [DbContext(typeof(JobPortalContext))]
-    [Migration("20230818073254_InitialEntities")]
+    [Migration("20230824045942_InitialEntities")]
     partial class InitialEntities
     {
         /// <inheritdoc />
@@ -25,7 +25,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Descriptions")
+                    b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
 

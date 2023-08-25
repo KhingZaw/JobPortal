@@ -38,18 +38,17 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.PLanguage,
                 jobs.EmployerName,
                 jobs.JobType,
-                jobs.TimeInMinutes,
-                jobs.Location,
                 jobs.OpentoName,
                 jobs.Opento,
                 jobs.SourceName,
+                jobs.Location,
                 jobs.Description,
+                jobs.TimeInMinutes,
                 jobs.Salary,
-                jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Descriptions)),
-                jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))));
-
-            //jobs.TimeInMinutes,
-
+                jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
+                jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))
+                
+                ));
 
             return Ok(response);
         }

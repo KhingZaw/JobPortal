@@ -32,12 +32,12 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
         job.Name = request.Job.Name;
         job.Description = request.Job.Description;
         job.Location = request.Job.Location;
-        //job.TimeInMinutes = request.Trail.TimeInMinutes;
+        job.TimeInMinutes = request.Job.TimeInMinutes;
         job.Salary = request.Job.Salary;
         job.JobDescriptions = request.Job.JobDescriptions.Select(ri => new JobDescription
         {
             Stage = ri.Stage,
-            Descriptions = ri.Descriptions,
+            Description = ri.Description,
             Jobs = job
         }).ToList();
         job.JobRequirements = request.Job.JobRequirements.Select(ri => new JobRequirement
