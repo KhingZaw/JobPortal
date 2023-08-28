@@ -36,6 +36,7 @@ namespace JobPortal.Api.Features.Home.Shared
                 job.SourceName,
                 job.Description,
                 job.Location,
+                job.CreatedDate,
                 job.TimeInMinutes,
                 job.Salary )));
 

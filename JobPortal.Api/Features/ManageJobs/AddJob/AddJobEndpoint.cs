@@ -24,6 +24,7 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
             Name = request.Jobs.Name,
             Description = request.Jobs.Description,
             Location = request.Jobs.Location,
+            CreatedDate = request.Jobs.CreatedDate,
             TimeInMinutes = 0,
             Salary = request.Jobs.Salary
         };

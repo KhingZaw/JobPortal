@@ -43,6 +43,7 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.SourceName,
                 jobs.Location,
                 jobs.Description,
+                jobs.CreatedDate,
                 jobs.TimeInMinutes,
                 jobs.Salary,
                 jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),

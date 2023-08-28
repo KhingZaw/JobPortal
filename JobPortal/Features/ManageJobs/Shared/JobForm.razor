@@ -48,9 +48,7 @@
             <label for="jobSalary" class="font-weight-bold text-secondary">Salary</label>
             <InputNumber @bind-Value="_job.Salary" class="form-control" id="JobSalary" />
             <ValidationMessage For="@(() => _job.Salary)" />
-        </FormFieldSet>
-
-      
+        </FormFieldSet>   
     </FormSection>
 
     <FormSection Title="JobDescription"
@@ -135,6 +133,15 @@
         </div>
     </FormSection>
 
+    @*<FormSection Title="CreatedDate"
+        HelpText="">
+        <FormFieldSet Width="col-3">
+            <label for="jobCreatedDate" class="font-weight-bold text-secondary">CreatedDate</label>
+            <InputDate @bind-Value="_job.CreatedDate" class="form-control" id="jobCreatedDate" />
+            <ValidationMessage For="@(() => _job.CreatedDate)" />
+        </FormFieldSet>
+    </FormSection>
+*@
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
@@ -174,6 +181,7 @@
             _job.ImageAction = ImageAction.None;
             _job.Salary = Job.Salary;
             _job.TimeInMinutes = Job.TimeInMinutes;
+            _job.CreatedDate = Job.CreatedDate;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(Job.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {

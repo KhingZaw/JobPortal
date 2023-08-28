@@ -54,7 +54,8 @@ else
                     Description = x.Description,
                     Location = x.Location,
                     Salary = x.Salary,
-                    TimeInMinutes = x.TimeInMinutes
+                    TimeInMinutes = x.TimeInMinutes,
+                    CreatedDate = x.CreatedDate
                 });
             _searchResults = allJobs!.Where(x => x.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase)
                                             || x.Location.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase));

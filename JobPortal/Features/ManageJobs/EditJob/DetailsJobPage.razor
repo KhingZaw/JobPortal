@@ -70,6 +70,7 @@ else
             _job.Description = response.Jobs.Description;
             _job.Location = response.Jobs.Location;
             _job.TimeInMinutes = response.Jobs.TimeInMinutes;
+            _job.CreatedDate = response.Jobs.CreatedDate;
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription

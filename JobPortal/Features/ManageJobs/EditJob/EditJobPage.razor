@@ -53,6 +53,7 @@ else
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
             _job.TimeInMinutes = response.Jobs.TimeInMinutes;
+            _job.CreatedDate = response.Jobs.CreatedDate;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,
@@ -88,6 +89,7 @@ else
             _job.Location = job.Location;
             _job.Salary = job.Salary;
             _job.TimeInMinutes = job.TimeInMinutes;
+            _job.CreatedDate = job.CreatedDate;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(job.JobDescriptions.Select(ri => new JobsDto.JobDescription
             {

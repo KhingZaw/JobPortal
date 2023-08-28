@@ -41,7 +41,6 @@ namespace JobPortal.Api
                 RequestPath = new Microsoft.AspNetCore.Http.PathString("/Images")
             });
 
-
             app.UseAuthorization();
 
 
