@@ -4,6 +4,7 @@ using JobPortal.Api.Persistence.Entities;
 using JobPortal.Shared.Features.ManageJobs.AddJob;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Runtime.Versioning;
 
 namespace JobPortal.Api.Features.ManageJobs.AddJob;
 
@@ -21,11 +22,17 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
     {
         var job = new Jobs
         {
+
             Name = request.Jobs.Name,
+            FrameworkName =request.Jobs.FrameworkName,
+            PLanguage = request.Jobs.PLanguage,
+            EmployerName = request.Jobs.EmployerName,
+            JobType = request.Jobs.JobType,
+            Opento= request.Jobs.Opento,
             Description = request.Jobs.Description,
             Location = request.Jobs.Location,
             CreatedDate = request.Jobs.CreatedDate,
-            TimeInMinutes = 0,
+            TimeInMinutes = request.Jobs.TimeInMinutes,
             Salary = request.Jobs.Salary
         };
 

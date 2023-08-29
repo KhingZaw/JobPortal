@@ -37,9 +37,9 @@ public class Jobs
     public string Location { get; set; } = "";
 
     public ICollection<JobDescription> JobDescriptions { get; set; } = default!;
-    //public IEnumerable<JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
+    
     public ICollection<JobRequirement> JobRequirements { get; set; } = default!;
-    //public IEnumerable<JobRequirement> JobRequirements { get; set; } = Array.Empty<JobRequirement>();
+    
 }
 
 public class JobsConfig : IEntityTypeConfiguration<Jobs>

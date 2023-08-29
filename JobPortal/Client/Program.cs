@@ -2,6 +2,7 @@ using JobPortal;
 using MediatR;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 namespace JobPortal
 {
@@ -15,7 +16,7 @@ namespace JobPortal
 
 			builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             builder.Services.AddMediatR(typeof(Program).Assembly);
-
+            builder.Services.AddMudServices();
             await builder.Build().RunAsync();
 		}
 	}

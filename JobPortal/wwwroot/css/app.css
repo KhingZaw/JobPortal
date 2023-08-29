@@ -21,7 +21,6 @@ a {
 
 .navbar {
     border-bottom: 1px solid var(--brand);
-    background: linear-gradient(90deg, rgba(255,255,255,1) 5%, rgba(255,255,255,0) 100%), url("../images/logo.png") no-repeat center;
     background-size: contain;
 }
 
@@ -182,4 +181,13 @@ select.valid.modified {
 }
 .card-brand {
     border-top: 4px solid var(--brand);
+}
+.logo {
+    display: flex;
+    font-size: 35px;
+    font-weight: 800;
+    color: black;
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
 }

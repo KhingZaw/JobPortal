@@ -3,13 +3,6 @@
 
 <PageTitle>Edit Job - JobPortal</PageTitle>
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Edit Job</li>
-    </ol>
-</nav>
-
 @if (_isLoading)
 {
     <p>Loading job...</p>
@@ -48,6 +41,11 @@ else
         {
             _job.Id = JobsId;
             _job.Name = response.Jobs.Name;
+            _job.FrameworkName = response.Jobs.FrameworkName;
+            _job.PLanguage = response.Jobs.PLanguage;
+            _job.EmployerName = response.Jobs.EmployerName;
+            _job.JobType = response.Jobs.JobType;
+            _job.Opento = response.Jobs.Opento;
             _job.Description = response.Jobs.Description;
             _job.Location = response.Jobs.Location;
             _job.Image = response.Jobs.Image;
@@ -85,6 +83,11 @@ else
         else
         {
             _job.Name = job.Name;
+            _job.FrameworkName = job.FrameworkName;
+            _job.PLanguage = job.PLanguage;
+            _job.EmployerName = job.EmployerName;
+            _job.JobType = job.JobType;
+            _job.Opento = job.Opento;
             _job.Description = job.Description;
             _job.Location = job.Location;
             _job.Salary = job.Salary;

@@ -12,8 +12,6 @@
 }
 else
 {
-    <h3 class="font-weight-light"> <a href="add-job">Add Job</a></h3>
-
     <JobSearch /> 
 
     <div class="grid">
@@ -50,6 +48,11 @@ else
                 {
                     Id = x.Id,
                     Name = x.Name,
+                    EmployerName = x.EmployerName,
+                    PLanguage = x.PLanguage,
+                    FrameworkName = x.FrameworkName,
+                    JobType = x.JobType,
+                    Opento = x.Opento,
                     Image = x.Image,
                     Description = x.Description,
                     Location = x.Location,

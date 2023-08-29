@@ -1,13 +1,6 @@
 ﻿@page "/detail/{JobsId:int}"
 @inject IMediator Mediator
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="/">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">DetailsJobPage</li>
-    </ol>
-</nav>
-
 @if (_isLoading)
 {
     <p>Loading job...</p>
@@ -67,12 +60,17 @@ else
         {
             _job.Id = JobsId;
             _job.Name = response.Jobs.Name;
+            _job.FrameworkName = response.Jobs.FrameworkName;
+            _job.PLanguage = response.Jobs.PLanguage;
+            _job.EmployerName = response.Jobs.EmployerName;
+            _job.JobType = response.Jobs.JobType;
+            _job.Opento = response.Jobs.Opento;
             _job.Description = response.Jobs.Description;
             _job.Location = response.Jobs.Location;
-            _job.TimeInMinutes = response.Jobs.TimeInMinutes;
-            _job.CreatedDate = response.Jobs.CreatedDate;
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
+            _job.TimeInMinutes = response.Jobs.TimeInMinutes;
+            _job.CreatedDate = response.Jobs.CreatedDate;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,

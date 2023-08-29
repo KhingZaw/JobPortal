@@ -5,6 +5,9 @@ using JobPortal.Shared.Features.ManageJobs.EditJob;
 using JobPortal.Shared.Features.ManageJobs.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MudBlazor;
+using System.Runtime.Versioning;
+using System.Xml.Linq;
 
 namespace JobPortal.Api.Features.ManageJobs.Editjob;
 
@@ -28,8 +31,12 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
         {
             return BadRequest("Job could not be found.");
         }
-
         job.Name = request.Job.Name;
+        job.FrameworkName = request.Job.FrameworkName;
+        job.PLanguage = request.Job.PLanguage;
+        job.EmployerName = request.Job.EmployerName;
+        job.JobType = request.Job.JobType;
+        job.Opento = request.Job.Opento;
         job.Description = request.Job.Description;
         job.Location = request.Job.Location;
         job.CreatedDate = request.Job.CreatedDate;

@@ -9,7 +9,36 @@
             <InputText @bind-Value="_job.Name" class="form-control" id="JobName" />
             <ValidationMessage For="@(() => _job.Name)" />
         </FormFieldSet>
+        <FormFieldSet Width="col-6">
+            <label for="opento" class="font-weight-bold text-secondary">Opento</label>
 
+            <select @bind="_job.Opento" class="form-select" aria-label="Default select example">
+                <option selected>Open this select menu</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="male/female">Male/Female</option>
+            </select>
+        </FormFieldSet>
+        <FormFieldSet Width="col-6">
+            <label for="EmployerName" class="font-weight-bold text-secondary">Company Name</label>
+            <InputText @bind-Value="_job.EmployerName" class="form-control" id="EmployerName" />
+            <ValidationMessage For="@(() => _job.EmployerName)" />
+        </FormFieldSet>
+        <FormFieldSet Width="col-6">
+            <label for="jobType" class="font-weight-bold text-secondary">Job Type</label>
+            <InputText @bind-Value="_job.JobType" class="form-control" id="jobType" />
+            <ValidationMessage For="@(() => _job.JobType)" />
+        </FormFieldSet>
+        <FormFieldSet Width="col-6">
+            <label for="PLanguage" class="font-weight-bold text-secondary">Programming Language</label>
+            <InputText @bind-Value="_job.PLanguage" class="form-control" id="PLanguage" />
+            <ValidationMessage For="@(() => _job.PLanguage)" />
+        </FormFieldSet>
+        <FormFieldSet Width="col-6">
+            <label for="FrameworkName" class="font-weight-bold text-secondary">Framework Name</label>
+            <InputText @bind-Value="_job.FrameworkName" class="form-control" id="FrameworkName" />
+            <ValidationMessage For="@(() => _job.FrameworkName)" />
+        </FormFieldSet>
         <FormFieldSet>
             <label for="jobDescription" class="font-weight-bold text-secondary">Description</label>
             <InputTextArea @bind-Value="_job.Description" rows="6" class="form-control" id="JobDescription" />
@@ -133,15 +162,6 @@
         </div>
     </FormSection>
 
-    @*<FormSection Title="CreatedDate"
-        HelpText="">
-        <FormFieldSet Width="col-3">
-            <label for="jobCreatedDate" class="font-weight-bold text-secondary">CreatedDate</label>
-            <InputDate @bind-Value="_job.CreatedDate" class="form-control" id="jobCreatedDate" />
-            <ValidationMessage For="@(() => _job.CreatedDate)" />
-        </FormFieldSet>
-    </FormSection>
-*@
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
@@ -175,6 +195,11 @@
         {
             _job.Id = Job.Id;
             _job.Name = Job.Name;
+            _job.EmployerName = Job.EmployerName;
+            _job.PLanguage = Job.PLanguage;
+            _job.JobType = Job.JobType;
+            _job.FrameworkName =Job.FrameworkName;
+            _job.Opento = Job.Opento;
             _job.Description = Job.Description;
             _job.Location = Job.Location;
             _job.Image = Job.Image;
