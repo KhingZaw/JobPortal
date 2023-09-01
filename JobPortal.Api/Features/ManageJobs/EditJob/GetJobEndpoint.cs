@@ -48,7 +48,6 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.Salary,
                 jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
                 jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))
-                
                 ));
 
             return Ok(response);

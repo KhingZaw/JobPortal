@@ -58,7 +58,6 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
             public int Stage { get; set; }
             public string Requirement { get; set; } = "";
         }
-
     }
 
     public class JobsValidator : AbstractValidator<JobsDto>
@@ -90,5 +89,5 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
             RuleFor(x => x.Requirement).NotEmpty().WithMessage("Please enter a requirement");
         }
     }
-
+    
 }

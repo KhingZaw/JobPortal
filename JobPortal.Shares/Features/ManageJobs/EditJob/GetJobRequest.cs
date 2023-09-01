@@ -25,7 +25,6 @@ public record GetJobRequest(int JobsId) : IRequest<GetJobRequest.Response>
         int Salary,
         IEnumerable<JobDescription> JobDescriptions,
         IEnumerable<JobRequirement> JobRequirements);
-
     public record JobDescription(
         int Id, 
         int Stage, 
@@ -34,5 +33,4 @@ public record GetJobRequest(int JobsId) : IRequest<GetJobRequest.Response>
         int Id,
         int Stage, 
         string Requirement);
-
 }

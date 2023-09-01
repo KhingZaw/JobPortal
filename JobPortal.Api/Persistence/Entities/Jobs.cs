@@ -39,7 +39,7 @@ public class Jobs
     public ICollection<JobDescription> JobDescriptions { get; set; } = default!;
     
     public ICollection<JobRequirement> JobRequirements { get; set; } = default!;
-    
+
 }
 
 public class JobsConfig : IEntityTypeConfiguration<Jobs>

@@ -20,45 +20,47 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
     [HttpPost(AddJobRequest.RouteTemplate)]
     public override async Task<ActionResult<int>> HandleAsync(AddJobRequest request, CancellationToken cancellationToken = default)
     {
-        var job = new Jobs
-        {
 
-            Name = request.Jobs.Name,
-            FrameworkName =request.Jobs.FrameworkName,
-            PLanguage = request.Jobs.PLanguage,
-            EmployerName = request.Jobs.EmployerName,
-            JobType = request.Jobs.JobType,
-            Opento= request.Jobs.Opento,
-            Description = request.Jobs.Description,
-            Location = request.Jobs.Location,
-            CreatedDate = request.Jobs.CreatedDate,
-            TimeInMinutes = request.Jobs.TimeInMinutes,
-            Salary = request.Jobs.Salary
-        };
+            var job = new Jobs
+            {
 
-        await _database.Jobs.AddAsync(job, cancellationToken);
+                Name = request.Jobs.Name,
+                FrameworkName = request.Jobs.FrameworkName,
+                PLanguage = request.Jobs.PLanguage,
+                EmployerName = request.Jobs.EmployerName,
+                JobType = request.Jobs.JobType,
+                Opento = request.Jobs.Opento,
+                Description = request.Jobs.Description,
+                Location = request.Jobs.Location,
+                CreatedDate = request.Jobs.CreatedDate,
+                TimeInMinutes = request.Jobs.TimeInMinutes,
+                Salary = request.Jobs.Salary
+            };
 
-        var jobdescriptions = request.Jobs.JobDescriptions.Select(x => new JobDescription
-        {
-            Stage = x.Stage,
-            Description = x.Description,
-            Jobs = job
-        });
+            await _database.Jobs.AddAsync(job, cancellationToken);
 
-        await _database.Jobs.AddAsync(job, cancellationToken);
+            var jobdescriptions = request.Jobs.JobDescriptions.Select(x => new JobDescription
+            {
+                Stage = x.Stage,
+                Description = x.Description,
+                Jobs = job
+            });
 
-        var jobrequirements = request.Jobs.JobRequirements.Select(x => new JobRequirement
-        {
-            Stage = x.Stage,
-            Requirement = x.Requirement,
-            Jobs = job
-        });
+            await _database.Jobs.AddAsync(job, cancellationToken);
 
-        await _database.JobDescriptions.AddRangeAsync(jobdescriptions, cancellationToken);
-        await _database.JobRequirements.AddRangeAsync(jobrequirements, cancellationToken);
+            var jobrequirements = request.Jobs.JobRequirements.Select(x => new JobRequirement
+            {
+                Stage = x.Stage,
+                Requirement = x.Requirement,
+                Jobs = job
+            });
 
-        await _database.SaveChangesAsync(cancellationToken);
+            await _database.JobDescriptions.AddRangeAsync(jobdescriptions, cancellationToken);
+            await _database.JobRequirements.AddRangeAsync(jobrequirements, cancellationToken);
 
-        return Ok(job.Id);
-    }
+            await _database.SaveChangesAsync(cancellationToken);
+
+            return Ok(job.Id);
+        }
+        
 }

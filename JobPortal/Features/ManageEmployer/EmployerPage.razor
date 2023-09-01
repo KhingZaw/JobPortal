@@ -1,0 +1,39 @@
+﻿@page "/employer"
+@inject IMediator Mediator
+
+@if (_isLoading)
+{
+    <p>Loading Profile.....</p>
+}
+else
+{
+    <h3 class="mt-5 mb-4">@_employer.EmployerName ;</h3>
+}
+
+@code {
+    private bool _isLoading;
+    private EmployerDto _employer = new EmployerDto();
+
+    [Parameter] public int EmployerId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        _isLoading = true;
+
+        var response = await Mediator.Send(new GetEmployerRequest(EmployerId));
+
+        if (response.Employers is not null)
+        {
+            _employer.Id = EmployerId;
+            _employer.EmployerName = response.Employers.EmployerName;
+            _employer.EmployerEmail = response.Employers.EmployerEmail;
+            _employer.EmployerPhone = response.Employers.EmployerPhone;
+            _employer.Location = response.Employers.Location;
+            _employer.Description = response.Employers.Description;
+            _employer.Image = response.Employers.Image;
+
+        }
+        _isLoading = false;
+    }
+}
+

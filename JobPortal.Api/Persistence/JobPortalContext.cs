@@ -8,7 +8,7 @@ public class JobPortalContext : DbContext
     public DbSet<Jobs> Jobs => Set<Jobs>();
     public DbSet<JobDescription> JobDescriptions => Set<JobDescription>();
     public DbSet<JobRequirement> JobRequirements => Set<JobRequirement>();
-
+    public DbSet<Employers> Employers => Set<Employers>();
     public JobPortalContext(DbContextOptions<JobPortalContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -18,5 +18,6 @@ public class JobPortalContext : DbContext
         modelBuilder.ApplyConfiguration(new JobsConfig());
         modelBuilder.ApplyConfiguration(new JobDescriptionConfig());
         modelBuilder.ApplyConfiguration(new JobRequirementConfig());
+        modelBuilder.ApplyConfiguration(new EmployerConfig());
     }
 }

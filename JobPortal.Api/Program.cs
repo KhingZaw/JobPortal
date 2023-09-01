@@ -2,6 +2,7 @@ using FluentValidation;
 using FluentValidation.Validators;
 using JobPortal.Api.Persistence;
 using JobPortal.Shared.Features.ManageJobs.Shared;
+using JobPortal.Shared.Features.MangeEmployer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
@@ -17,6 +18,8 @@ namespace JobPortal.Api
             builder.Services.AddDbContext<JobPortalContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("JobPortalContext")));
 
             builder.Services.AddScoped<IValidator<JobsDto>, JobsValidator>();
+
+            builder.Services.AddScoped<IValidator<EmployerDto>, EmployerValidator>();
 
 
             builder.Services.AddControllers();
