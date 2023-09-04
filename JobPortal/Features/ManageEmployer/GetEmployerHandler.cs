@@ -1,4 +1,4 @@
-﻿using JobPortal.Shared.Features.MangeEmployer;
+﻿using JobPortal.Shared.Features.ManageEmployer;
 using MediatR;
 using System.Net.Http.Json;
 
@@ -16,7 +16,7 @@ public class GetEmployerHandler : IRequestHandler<GetEmployerRequest, GetEmploye
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<GetEmployerRequest.Response>(GetEmployerRequest.RouteTemplate.Replace("{employerId}", request.EmployerId.ToString()));
+            return await _httpClient.GetFromJsonAsync<GetEmployerRequest.Response>(GetEmployerRequest.RouteTemplate);
         }
         catch (HttpRequestException)
         {

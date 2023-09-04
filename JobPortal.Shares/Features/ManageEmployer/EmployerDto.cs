@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JobPortal.Shared.Features.MangeEmployer
+namespace JobPortal.Shared.Features.ManageEmployer
 {
     public class EmployerDto
     {

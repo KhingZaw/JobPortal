@@ -30,6 +30,9 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("EmployerId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("EmployerName")
                         .IsRequired()
                         .HasColumnType("TEXT");

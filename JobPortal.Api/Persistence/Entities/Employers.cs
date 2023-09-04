@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
+using JobPortal.Shared.Features.ManageEmployer;
 
 namespace JobPortal.Api.Persistence.Entities;
 
 public class Employers
 {
     public int Id { get; set; }
+    public int EmployerId { get; set; }
     public string EmployerName { get; set; } = "";
     public string EmployerEmail { get; set; } = "";
     public string EmployerPhone { get; set; } = "";

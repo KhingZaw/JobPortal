@@ -1,7 +1,8 @@
 ﻿using Ardalis.ApiEndpoints;
 using JobPortal.Api.Persistence;
+using JobPortal.Api.Persistence.Entities;
 using JobPortal.Shared.Features.ManageJobs.EditJob;
-using JobPortal.Shared.Features.MangeEmployer;
+using JobPortal.Shared.Features.ManageEmployer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,20 +20,17 @@ namespace JobPortal.Api.Features.ManageEmployer
         [HttpGet(GetEmployerRequest.RouteTemplate)]
         public override async Task<ActionResult<GetEmployerRequest.Response>> HandleAsync(int employerId, CancellationToken cancellationToken = default)
         {
-            var employer = await _context.Employers.SingleOrDefaultAsync(x => x.Id == employerId, cancellationToken: cancellationToken);
+            var employer = await _context.Employers.ToListAsync(cancellationToken);
 
-            if (employer is null)
-            {
-                return BadRequest("Eployer could not be found.");
-            }
-            var response = new GetEmployerRequest.Response(new GetEmployerRequest.Employers(
+            var response = new GetEmployerRequest.Response(employer.Select(employer => new GetEmployerRequest.Employers(
                 employer.Id,
                 employer.EmployerName,
                 employer.EmployerEmail,
                 employer.EmployerPhone,
+                employer.Image,
                 employer.Location,
-                employer.Description,
-                employer.Image));
+                employer.Description
+                )));
 
             return Ok(response);
 

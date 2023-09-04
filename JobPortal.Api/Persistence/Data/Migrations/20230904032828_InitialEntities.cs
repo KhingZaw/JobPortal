@@ -16,6 +16,7 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    EmployerId = table.Column<int>(type: "INTEGER", nullable: false),
                     EmployerName = table.Column<string>(type: "TEXT", nullable: false),
                     EmployerEmail = table.Column<string>(type: "TEXT", nullable: false),
                     EmployerPhone = table.Column<string>(type: "TEXT", nullable: false),
