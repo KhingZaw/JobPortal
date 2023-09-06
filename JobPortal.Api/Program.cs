@@ -5,6 +5,9 @@ using JobPortal.Shared.Features.ManageJobs.Shared;
 using JobPortal.Shared.Features.ManageEmployer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace JobPortal.Api
 {
@@ -26,6 +29,23 @@ namespace JobPortal.Api
             //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = builder.Configuration["Auth0:Authority"];
+                options.Audience = builder.Configuration["Auth0:ApiIdentifier"];
+
+                //options.RequireHttpsMetadata = false;
+
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidIssuer = builder.Configuration["Auth0:Authority"],
+                    ValidAudience = builder.Configuration["Auth0:ApiIdentifier"]
+                };
+            });
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -44,8 +64,8 @@ namespace JobPortal.Api
                 RequestPath = new Microsoft.AspNetCore.Http.PathString("/Images")
             });
 
+            app.UseAuthentication();
             app.UseAuthorization();
-
 
             app.MapControllers();
 

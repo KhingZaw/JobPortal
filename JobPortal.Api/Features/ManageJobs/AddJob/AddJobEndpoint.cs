@@ -2,9 +2,11 @@
 using JobPortal.Api.Persistence;
 using JobPortal.Api.Persistence.Entities;
 using JobPortal.Shared.Features.ManageJobs.AddJob;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Runtime.Versioning;
+using static MudBlazor.Colors;
 
 namespace JobPortal.Api.Features.ManageJobs.AddJob;
 
@@ -16,12 +18,12 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
     {
         _database = database;
     }
-
+    [Authorize]
     [HttpPost(AddJobRequest.RouteTemplate)]
     public override async Task<ActionResult<int>> HandleAsync(AddJobRequest request, CancellationToken cancellationToken = default)
     {
-
-            var job = new Jobs
+        
+        var job = new Jobs
             {
 
                 Name = request.Jobs.Name,
@@ -33,9 +35,9 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
                 Description = request.Jobs.Description,
                 Location = request.Jobs.Location,
                 CreatedDate = request.Jobs.CreatedDate,
-                TimeInMinutes = request.Jobs.TimeInMinutes,
-                Salary = request.Jobs.Salary
-            };
+                Salary = request.Jobs.Salary,
+                Owner = HttpContext.User.Identity!.Name!
+        };
 
             await _database.Jobs.AddAsync(job, cancellationToken);
 

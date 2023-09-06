@@ -3,6 +3,7 @@ using JobPortal.Api.Persistence;
 using JobPortal.Api.Persistence.Entities;
 using JobPortal.Shared.Features.ManageJobs.EditJob;
 using JobPortal.Shared.Features.ManageJobs.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MudBlazor;
@@ -19,7 +20,7 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
     {
         _database = database;
     }
-
+    [Authorize]
     [HttpPut(EditJobRequest.RouteTemplate)]
     public override async Task<ActionResult<bool>> HandleAsync(EditJobRequest request, CancellationToken cancellationToken = default)
     {
@@ -31,6 +32,10 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
         {
             return BadRequest("Job could not be found.");
         }
+        if (!job.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator"))
+        {
+            return Unauthorized();
+        }
         job.Name = request.Job.Name;
         job.FrameworkName = request.Job.FrameworkName;
         job.PLanguage = request.Job.PLanguage;
@@ -40,7 +45,6 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
         job.Description = request.Job.Description;
         job.Location = request.Job.Location;
         job.CreatedDate = request.Job.CreatedDate;
-        job.TimeInMinutes = request.Job.TimeInMinutes;
         job.Salary = request.Job.Salary;
         job.JobDescriptions = request.Job.JobDescriptions.Select(ri => new JobDescription
         {

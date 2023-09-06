@@ -37,7 +37,6 @@ else
     {
         try
         {
-            //var allJobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
             var response = await Mediator.Send(new GetJobsRequest());
             var allJobs = response.Jobs.Select(x => new Jobs
                 {
@@ -52,7 +51,7 @@ else
                     Description = x.Description,
                     Location = x.Location,
                     Salary = x.Salary,
-                    TimeInMinutes = x.TimeInMinutes,
+                   // Released = x.Released.ToString(),
                     CreatedDate = x.CreatedDate
                 });
             _searchResults = allJobs!.Where(x => x.Name.Contains(SearchTerm, StringComparison.CurrentCultureIgnoreCase)

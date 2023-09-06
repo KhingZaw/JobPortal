@@ -144,6 +144,10 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Owner")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("PLanguage")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -154,9 +158,6 @@ namespace JobPortal.Api.Persistence.Data.Migrations
                     b.Property<string>("SourceName")
                         .IsRequired()
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("TimeInMinutes")
-                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

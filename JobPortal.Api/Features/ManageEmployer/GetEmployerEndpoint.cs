@@ -20,7 +20,11 @@ namespace JobPortal.Api.Features.ManageEmployer
         [HttpGet(GetEmployerRequest.RouteTemplate)]
         public override async Task<ActionResult<GetEmployerRequest.Response>> HandleAsync(int employerId, CancellationToken cancellationToken = default)
         {
-            var employer = await _context.Employers.ToListAsync(cancellationToken);
+            var employer = await _context.Employers
+                //.Include(x => x.Jobs)
+                //.Include(x => x.JobDescriptions)
+                //.Include(x => x.JobRequirements)
+                .ToListAsync(cancellationToken);
 
             var response = new GetEmployerRequest.Response(employer.Select(employer => new GetEmployerRequest.Employers(
                 employer.Id,
@@ -30,6 +34,8 @@ namespace JobPortal.Api.Features.ManageEmployer
                 employer.Image,
                 employer.Location,
                 employer.Description
+                //employer.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
+                //employer.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))
                 )));
 
             return Ok(response);

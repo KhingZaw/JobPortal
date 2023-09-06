@@ -1,6 +1,7 @@
 ﻿using Ardalis.ApiEndpoints;
 using JobPortal.Api.Persistence;
 using JobPortal.Shared.Features.Home.Shared;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace JobPortal.Api.Features.Home.Shared
         {
             _context = context;
         }
-
+       
         [HttpGet(GetJobsRequest.RouteTemplate)]
         public override async Task<ActionResult<GetJobsRequest.Response>> HandleAsync(int jobsId, CancellationToken cancellationToken = default)
         {
@@ -37,8 +38,9 @@ namespace JobPortal.Api.Features.Home.Shared
                 job.Description,
                 job.Location,
                 job.CreatedDate,
-                job.TimeInMinutes,
-                job.Salary )));
+                job.Salary,
+                job.Owner
+                )));
 
             return Ok(response);
         }

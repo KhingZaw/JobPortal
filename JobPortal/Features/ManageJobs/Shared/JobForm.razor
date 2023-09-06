@@ -67,7 +67,11 @@
                 </div>
             }
         </FormFieldSet>
-
+        @*<FormFieldSet Width="col-5">
+            <MudDatePicker Label="JobReleasedDate" Color="Color.Secondary" @bind-Date=_job.Released />
+            <br />
+        </FormFieldSet>
+*@
     </FormSection>
 
     <FormSection Title="Salary"
@@ -205,7 +209,6 @@
             _job.Image = Job.Image;
             _job.ImageAction = ImageAction.None;
             _job.Salary = Job.Salary;
-            _job.TimeInMinutes = Job.TimeInMinutes;
             _job.CreatedDate = Job.CreatedDate;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(Job.JobDescriptions.Select(ri => new JobsDto.JobDescription

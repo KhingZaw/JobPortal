@@ -21,7 +21,6 @@ public record GetJobRequest(int JobsId) : IRequest<GetJobRequest.Response>
         string Location,
         string Description,
         string CreatedDate,
-        int TimeInMinutes,
         int Salary,
         IEnumerable<JobDescription> JobDescriptions,
         IEnumerable<JobRequirement> JobRequirements);

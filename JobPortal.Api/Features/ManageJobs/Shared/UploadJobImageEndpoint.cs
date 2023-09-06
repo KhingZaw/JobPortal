@@ -2,6 +2,7 @@
 using JobPortal.Api.Persistence;
 using JobPortal.Shared.Features.ManageJobs.Shared;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +16,7 @@ namespace JobPortal.Api.Features.ManageJobs.Shared
         {
             _database = database;
         }
-
+        [Authorize]
         [HttpPost(UploadJobImageRequest.RouteTemplate)]
         public override async Task<ActionResult<string>> HandleAsync([FromRoute] int jobId, CancellationToken cancellationToken = default)
         {
@@ -24,7 +25,10 @@ namespace JobPortal.Api.Features.ManageJobs.Shared
             {
                 return BadRequest("Job does not exist.");
             }
-
+            if (!job.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator"))
+            {
+                return Unauthorized();
+            }
             var file = Request.Form.Files[0];
             if (file.Length == 0)
             {

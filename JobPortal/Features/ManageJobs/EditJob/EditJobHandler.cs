@@ -6,16 +6,25 @@ namespace JobPortal.Client.Features.ManageJobs.EditJob;
 
 public class EditJobHandler : IRequestHandler<EditJobRequest, EditJobRequest.Response>
 {
-    private readonly HttpClient _httpClient;
+    //private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public EditJobHandler (HttpClient httpClient)
+    //public EditJobHandler (HttpClient httpClient)
+    public EditJobHandler(IHttpClientFactory httpClientFactory)
+
     {
-        _httpClient = httpClient;
+        //_httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
+
     }
 
     public async Task<EditJobRequest.Response> Handle(EditJobRequest request, CancellationToken cancellationToken)
     {
-        var response = await _httpClient.PutAsJsonAsync(EditJobRequest.RouteTemplate, request, cancellationToken);
+        var client = _httpClientFactory.CreateClient("SecureAPIClient");
+
+       // var response = await _httpClient.PutAsJsonAsync(EditJobRequest.RouteTemplate, request, cancellationToken);
+        var response = await client.PutAsJsonAsync(EditJobRequest.RouteTemplate, request, cancellationToken);
+
 
         if (response.IsSuccessStatusCode)
         {

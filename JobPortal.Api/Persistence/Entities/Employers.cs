@@ -14,6 +14,13 @@ public class Employers
     public string Location { get; set; } = "";
     public string? Image { get; set; } = "";
     public string Description { get; set; } = "";
+
+    //public ICollection<Jobs> Jobs { get; set; } = default!;
+
+    //public ICollection<JobDescription> JobDescriptions { get; set; } = default!;
+
+    //public ICollection<JobRequirement> JobRequirements { get; set; } = default!;
+
 }
 public class EmployerConfig : IEntityTypeConfiguration<Employers>
 {

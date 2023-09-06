@@ -22,8 +22,6 @@ public class Jobs
 
     public string CreatedDate { get; set; } = "";
 
-    public int TimeInMinutes { get; set; }
-
     public string OpentoName { get; set; } = "";
 
     public string Opento { get; set; } = "";
@@ -35,6 +33,8 @@ public class Jobs
     public string Description { get; set; } = "";
 
     public string Location { get; set; } = "";
+
+    public string Owner { get; set; } = default!;
 
     public ICollection<JobDescription> JobDescriptions { get; set; } = default!;
     
@@ -54,5 +54,7 @@ public class JobsConfig : IEntityTypeConfiguration<Jobs>
         builder.Property(x => x.Salary).IsRequired();
         builder.Property(x => x.Location).IsRequired();
         builder.Property(x => x.Description).IsRequired();
+        builder.Property(x => x.Owner).IsRequired();
+     
     }
 }

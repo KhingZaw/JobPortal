@@ -18,8 +18,7 @@
 
         public string CreatedDate { get; set; } = "";
 
-        public int TimeInMinutes { get; set; }
-        public string TimeFormatted => $"{TimeInMinutes / 60}h {TimeInMinutes % 60}m";
+        //public string Released { get; set; } = "";
 
         public string OpentoName { get; set; } = "";
 
@@ -32,6 +31,8 @@
         public string Location { get; set; } = "";
 
         public string Description { get; set; } = "";
+
+        public string Owner { get; set; } = "";
 
         public IEnumerable <JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
         public IEnumerable <JobRequirement> JobRequirements { get; set; } = Array.Empty<JobRequirement>();

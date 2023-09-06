@@ -5,23 +5,32 @@ namespace JobPortal.Features.ManageJobs.Shared;
 
 public class UploadJobImageHandler : IRequestHandler<UploadJobImageRequest, UploadJobImageRequest.Response>
 {
-    private readonly HttpClient _httpClient;
+    //private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public UploadJobImageHandler(HttpClient httpClient)
+    //public UploadJobImageHandler(HttpClient httpClient)
+    //{
+    //    _httpClient = httpClient;
+    //}
+    public UploadJobImageHandler(IHttpClientFactory httpClientFactory)
     {
-        _httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
     }
-
     public async Task<UploadJobImageRequest.Response> Handle(UploadJobImageRequest request, CancellationToken cancellationToken)
     {
         var fileContent = request.File.OpenReadStream(request.File.Size, cancellationToken);
 
-        using var content = new MultipartFormDataContent
-        {
-            { new StreamContent(fileContent), "image", request.File.Name }
-        };
+        //using var content = new MultipartFormDataContent        
+        //{
+        //    { new StreamContent(fileContent), "image", request.File.Name }
+        //};
+        using var content = new MultipartFormDataContent();
+        content.Add(new StreamContent(fileContent), "image", request.File.Name);
 
-        var response = await _httpClient.PostAsync(UploadJobImageRequest.RouteTemplate.Replace("{jobId}", request.JobId.ToString()), content, cancellationToken);
+        var client = _httpClientFactory.CreateClient("SecureAPIClient");
+
+        //var response = await _httpClient.PostAsync(UploadJobImageRequest.RouteTemplate.Replace("{jobId}", request.JobId.ToString()), content, cancellationToken);
+        var response = await client.PostAsync(UploadJobImageRequest.RouteTemplate.Replace("{jobId}", request.JobId.ToString()), content, cancellationToken);
 
         if (response.IsSuccessStatusCode)
         {

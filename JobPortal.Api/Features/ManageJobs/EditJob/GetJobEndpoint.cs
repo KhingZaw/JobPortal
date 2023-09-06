@@ -1,6 +1,7 @@
 ﻿using Ardalis.ApiEndpoints;
 using JobPortal.Api.Persistence;
 using JobPortal.Shared.Features.ManageJobs.EditJob;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
         {
             _context = context;
         }
-
+        [Authorize]
         [HttpGet(GetJobRequest.RouteTemplate)]
         public override async Task<ActionResult<GetJobRequest.Response>> HandleAsync(int jobsId, CancellationToken cancellationToken = default)
         {
@@ -22,15 +23,15 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 .Include(x=>x.JobRequirements)
                 .SingleOrDefaultAsync(x => x.Id == jobsId, cancellationToken: cancellationToken);
 
-
-            //var jobs = await _context.Jobs.Include(x => x.JobRequirements).SingleOrDefaultAsync(x => x.Id == jobsId, cancellationToken: cancellationToken);
-
-            if (jobs is null) 
+            if (jobs is null)
             {
                 return BadRequest("Job could not be found.");
             }
-
-            var response = new GetJobRequest.Response(new GetJobRequest.Jobs(
+            if (!jobs.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator"))
+            {
+                return Unauthorized();
+            }
+                var response = new GetJobRequest.Response(new GetJobRequest.Jobs(
                 jobs.Id,
                 jobs.Name,
                 jobs.Image,
@@ -44,7 +45,6 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.Location,
                 jobs.Description,
                 jobs.CreatedDate,
-                jobs.TimeInMinutes,
                 jobs.Salary,
                 jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
                 jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))

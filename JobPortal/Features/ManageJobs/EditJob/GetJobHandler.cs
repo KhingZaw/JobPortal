@@ -5,18 +5,26 @@ using System.Net.Http.Json;
 namespace JobPortal.Client.Features.ManageJobs.EditJob;
 public class GetJobHandler : IRequestHandler<GetJobRequest, GetJobRequest.Response?>
 {
-    private readonly HttpClient _httpClient;
+    //private readonly HttpClient _httpClient;
+    private readonly IHttpClientFactory _httpClientFactory;
 
-    public GetJobHandler(HttpClient httpClient)
+    //public GetJobHandler(HttpClient httpClient)
+    //{
+    //    _httpClient = httpClient;
+    //}
+    public GetJobHandler(IHttpClientFactory httpClientFactory)
     {
-        _httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
     }
-
     public async Task<GetJobRequest.Response?> Handle(GetJobRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<GetJobRequest.Response>(GetJobRequest.RouteTemplate.Replace("{jobsId}", request.JobsId.ToString()));
+            var client = _httpClientFactory.CreateClient("SecureAPIClient");
+
+            //return await _httpClient.GetFromJsonAsync<GetJobRequest.Response>(GetJobRequest.RouteTemplate.Replace("{jobsId}", request.JobsId.ToString()));
+            return await client.GetFromJsonAsync<GetJobRequest.Response>(GetJobRequest.RouteTemplate.Replace("{jobsId}", request.JobsId.ToString()));
+
         }
         catch (HttpRequestException)
         {

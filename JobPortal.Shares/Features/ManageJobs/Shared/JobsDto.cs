@@ -27,8 +27,6 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
 
         public string CreatedDate { get; set; } = "";
 
-        public int TimeInMinutes { get; set; }
-
         public string OpentoName { get; set; } = "";
 
         public string Opento { get; set; } = "";
@@ -42,6 +40,8 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
         public string Description { get; set; } = "";
 
         public ImageAction ImageAction { get; set; }
+
+        public string Owner { get; set; } = "";
 
         public List<JobDescription> JobDescriptions { get; set; } = new List<JobDescription>();
 

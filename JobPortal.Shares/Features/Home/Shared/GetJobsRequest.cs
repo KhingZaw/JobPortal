@@ -19,8 +19,8 @@ namespace JobPortal.Shared.Features.Home.Shared
             string Description,
             string Location,
             string CreatedDate,
-            int TimeInMinutes,
-            int Salary);
+            int Salary,
+            string Owner);
         public record Response(IEnumerable<Jobs> Jobs);
     }
 }

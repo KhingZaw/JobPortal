@@ -27,18 +27,6 @@ else
     private IEnumerable<Jobs>? _jobs;
     private Jobs? _selectedjob;
 
-    //protected override async Task OnInitializedAsync()
-    //{   
-    //    try
-    //    {
-    //        _jobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
-    //    }
-    //    catch (HttpRequestException ex)
-    //    {
-    //        Console.WriteLine($"There was a problem loading job data: {ex.Message}");
-    //    }
-
-    //}
     protected override async Task OnInitializedAsync()
     {
         try
@@ -57,8 +45,9 @@ else
                     Description = x.Description,
                     Location = x.Location,
                     Salary = x.Salary,
-                    TimeInMinutes = x.TimeInMinutes,
-                    CreatedDate = x.CreatedDate
+                    //Released = x.Released.ToString(),
+                    CreatedDate = x.CreatedDate,
+                    Owner =x.Owner
                 });
         }
         catch (HttpRequestException ex)

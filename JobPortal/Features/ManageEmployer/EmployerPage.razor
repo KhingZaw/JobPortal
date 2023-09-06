@@ -1,5 +1,6 @@
 ﻿@page "/employer"
 @inject IMediator Mediator
+@using JobPortal.Shared.Features.Home.Shared;
 @using JobPortal.Shared.Features.ManageEmployer;
 
 @if ( _employer == null)
@@ -35,11 +36,40 @@ else
                 Description = x.Description,
                 Image = x.Image
             });
-        
+
+
         }
         catch (HttpRequestException ex)
         {
             Console.WriteLine($"There was a problem loading job data: {ex.Message}");
         }
     }
-}
+    //protected override async Task OnInitializedAsync()
+    //{
+    //    try
+    //    {
+    //        //var allJobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
+    //        var response = await Mediator.Send(new GetJobsRequest());
+    //        var allJobs = response.Jobs.Select(x => new Jobs
+    //            {
+    //                Id = x.Id,
+    //                Name = x.Name,
+    //                EmployerName = x.EmployerName,
+    //                PLanguage = x.PLanguage,
+    //                FrameworkName = x.FrameworkName,
+    //                JobType = x.JobType,
+    //                Opento = x.Opento,
+    //                Image = x.Image,
+    //                Description = x.Description,
+    //                Location = x.Location,
+    //                Salary = x.Salary,
+    //                TimeInMinutes = x.TimeInMinutes,
+    //                CreatedDate = x.CreatedDate
+    //            });
+    //    }
+    //    catch (HttpRequestException ex)
+    //    {
+    //        Console.WriteLine($"There was a problem loading job data: {ex.Message}");
+    //    }
+
+    }
