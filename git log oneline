@@ -1,0 +1,125 @@
+[33mcommit a9f33971a20501d52e3a5de65457a728dad7a5ec[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Wed Sep 6 16:05:36 2023 +0630
+
+    [identy Auth0]
+
+[33mcommit 8dbe3293beece9d06ffef4f70ee1a32fdcc000e8[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Mon Sep 4 11:34:11 2023 +0630
+
+    employerpage
+
+[33mcommit fb2650b112865754f0d5a2637eaad157411dcaa3[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Sep 1 13:16:05 2023 +0630
+
+    [Employer Job page]
+
+[33mcommit aef20c5ae91e7ef64eb748db1d42e08fc9b9a022[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Tue Aug 29 13:07:36 2023 +0630
+
+    [add job and edit job ]
+
+[33mcommit 5bc5498c24bb89f7694a4eff1d6bf2c3e92a6d43[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Mon Aug 28 13:13:17 2023 +0630
+
+    [jobportal.razor]
+
+[33mcommit 211ca59c11e28d46ff1a8f0bc21c0c878ff0ee94[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 25 18:11:54 2023 +0630
+
+    [Job Details Page] job portal
+
+[33mcommit 6dfd8d477d14c21203de6ceceba9be41fc5a4f2e[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 18 14:29:36 2023 +0630
+
+    [edit page]'
+
+[33mcommit a79936cc16fb44fb2ad8acef70b561d3e6700ead[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Thu Aug 17 17:13:31 2023 +0630
+
+    [detail page get data from api] DetailsJobPage
+
+[33mcommit b02928be4cc66e893e7266051773c7f8e2cca6f8[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Wed Aug 16 17:45:27 2023 +0630
+
+    [edit page and add page get data] EditJob
+
+[33mcommit fb5096066d8ee1b3f5c7cbf9ea662abb80a71296[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Wed Aug 16 13:01:27 2023 +0630
+
+    [Json Data from Api to Ui]JobPortal.Api
+
+[33mcommit b3163f6c01234b5a83ec29ab9b6b690d2119a142[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Tue Aug 8 16:52:32 2023 +0630
+
+    [Adding Image Upload] UploadJobImage
+
+[33mcommit 2efe4b829e2d6a4abcf15058e65fe80ad019ee23[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Tue Aug 8 14:37:43 2023 +0630
+
+    [api run] jobportal.api
+
+[33mcommit f0113d36ddd20771ec3c7d893fbd023201d1f6d9[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Mon Aug 7 21:54:09 2023 +0630
+
+    [new addjobspage] in jobportal
+
+[33mcommit 5445712609dd2d86d2751eb3bbbf50faee467854[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Sun Aug 6 22:37:59 2023 +0630
+
+    [edit UI] DetailsPage.razor
+
+[33mcommit 82f33d2f6f2973e3aa13edbc7036364981bf6143[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Sat Aug 5 16:47:04 2023 +0630
+
+    [shared project name change] jobportal.shated
+
+[33mcommit 8aaa46a4d005afbfcea71843ea37456b5a607635[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Sat Aug 5 16:38:42 2023 +0630
+
+    [jobportal add api and shared project] JobPortal.sln
+
+[33mcommit bf0ad30ef53c5f08b6cace502e2e49cc22f462b9[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 4 17:58:19 2023 +0630
+
+    [show data update] DetailsPage
+
+[33mcommit 5e5dbad7d536654e2cf14f5eec4dbb43a9718883[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 4 17:37:22 2023 +0630
+
+    [show data] in DetailsPages
+
+[33mcommit 6d0835425bf04581759447d766e99208bf0cacdc[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 4 17:13:03 2023 +0630
+
+    add detailspage
+
+[33mcommit e12e8b53e7a15859f36cbbb6345fb613b756c2c8[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 4 16:35:53 2023 +0630
+
+    Add project files.
+
+[33mcommit 7b7aec30fc9f98d0bd7c97c3ee154550e4db0c6a[m
+Author: KhingZaw <khinzaw3027@gmail.com>
+Date:   Fri Aug 4 16:35:50 2023 +0630
+
+    Add .gitattributes and .gitignore.

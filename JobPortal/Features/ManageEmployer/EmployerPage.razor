@@ -2,40 +2,74 @@
 @inject IMediator Mediator
 @using JobPortal.Shared.Features.Home.Shared;
 @using JobPortal.Shared.Features.ManageEmployer;
+@using JobPortal.Shared.Features.ManageJobs.Shared;
+@*@attribute [Authorize]*@
 
-@if ( _employer == null)
+@if ( _job == null)
 {
     <p><em>Loading Profile...</em></p>
 }
 else
 {
-    @foreach(var Employer in _employer)
+    @*@foreach (var _job in Jobs)
     {
-        <h3 class="mt-5 mb-4">@Employer.EmployerName</h3>
-        <h4 class="mt-5 mb-4">@Employer.EmployerEmail</h4>
-        <h4 class="mt-5 mb-4">@Employer.EmployerPhone</h4>
+        <h3 class="mt-5 mb-4">@Employers.EmployerName</h3>
+        <h4 class="mt-5 mb-4">@Employers.Owner</h4>
+        <h4 class="mt-5 mb-4">@Employers.EmployerPhone</h4>
 
-    }
+    }*@
 }
 
 @code {
-    private IEnumerable<Employers>? _employer;
+    private JobsDto _job = new JobsDto();
+
+    [Parameter] public int EmployerId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            var response = await Mediator.Send(new GetEmployerRequest());
-            _employer = response.Employers.Select(x => new Employers
+            var response = await Mediator.Send(new GetEmployerRequest(EmployerId));
+
+            if (response.Jobs is not null)
             {
-                Id = x.Id,
-                EmployerName = x.EmployerName,
-                EmployerEmail = x.EmployerEmail,
-                EmployerPhone = x.EmployerPhone,
-                Location = x.Location,
-                Description = x.Description,
-                Image = x.Image
-            });
+                _job.Id = EmployerId;
+                _job.Name = response.Jobs.Name;
+                _job.FrameworkName = response.Jobs.FrameworkName;
+                _job.PLanguage = response.Jobs.PLanguage;
+                _job.EmployerName = response.Jobs.EmployerName;
+                _job.JobType = response.Jobs.JobType;
+                _job.Opento = response.Jobs.Opento;
+                _job.Description = response.Jobs.Description;
+                _job.Location = response.Jobs.Location;
+                _job.Image = response.Jobs.Image;
+                _job.Salary = response.Jobs.Salary;
+                _job.CreatedDate = response.Jobs.CreatedDate;
+                _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
+                    {
+                        Stage = ri.Stage,
+                        Description = ri.Description
+                    }));
+
+                _job.JobRequirements.AddRange(response.Jobs.JobRequirements.Select(ri => new JobsDto.JobRequirement
+                    {
+                        Stage = ri.Stage,
+                        Requirement = ri.Requirement
+                    }));
+
+                //_job.Employer.AddRange(response.Jobs.Employer.Select(ri => new JobsDto.Employers
+                //    {
+                //        EmployerName = ri.EmployerName,
+                //        EmployerEmail = ri.EmployerEmail,
+                //        EmployerPhone = ri.EmployerPhone,
+                //        Location = ri.Location,
+                //        Description = ri.Description,
+                //        Image = ri.Image,
+                //        Owner = ri.Owner
+                    
+                //}));
+            
+            };
 
 
         }
@@ -44,32 +78,4 @@ else
             Console.WriteLine($"There was a problem loading job data: {ex.Message}");
         }
     }
-    //protected override async Task OnInitializedAsync()
-    //{
-    //    try
-    //    {
-    //        //var allJobs = await Http.GetFromJsonAsync<IEnumerable<Jobs>>("jobs/jobs_data.json");
-    //        var response = await Mediator.Send(new GetJobsRequest());
-    //        var allJobs = response.Jobs.Select(x => new Jobs
-    //            {
-    //                Id = x.Id,
-    //                Name = x.Name,
-    //                EmployerName = x.EmployerName,
-    //                PLanguage = x.PLanguage,
-    //                FrameworkName = x.FrameworkName,
-    //                JobType = x.JobType,
-    //                Opento = x.Opento,
-    //                Image = x.Image,
-    //                Description = x.Description,
-    //                Location = x.Location,
-    //                Salary = x.Salary,
-    //                TimeInMinutes = x.TimeInMinutes,
-    //                CreatedDate = x.CreatedDate
-    //            });
-    //    }
-    //    catch (HttpRequestException ex)
-    //    {
-    //        Console.WriteLine($"There was a problem loading job data: {ex.Message}");
-    //    }
-
-    }
+}

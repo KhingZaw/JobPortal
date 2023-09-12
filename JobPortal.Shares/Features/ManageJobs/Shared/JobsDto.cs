@@ -89,5 +89,4 @@ namespace JobPortal.Shared.Features.ManageJobs.Shared
             RuleFor(x => x.Requirement).NotEmpty().WithMessage("Please enter a requirement");
         }
     }
-    
 }

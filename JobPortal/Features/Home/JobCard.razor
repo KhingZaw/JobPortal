@@ -12,11 +12,11 @@
                 <p class="card-text">@Job.Description</p>  
                <div>
                 <span class="oi oi-map-marker"> </span> @Job.Location &nbsp;
-                <i class="bi bi-calendar"> </i> @Job.CreatedDate &nbsp;
-                @*<i class="bi bi-clock"> </i> @Job.Released &nbsp;*@
+                <i class="bi bi-calendar"> </i> @Job.CreatedDate &nbsp
                 <i class="bi bi-currency-bitcoin"> </i> @Job.Salary
+              
             </div>
-                @* <i class="bi bi-coin"> </i> *@                             
+            
             <div class="d-flex justify-content-between mb-3">
                 <button class="btn btn-primary" title="View" @onclick="@(() => NavManager.NavigateTo($"/detail/{Job.Id}"))">
                   <i class="bi bi-binoculars"></i>

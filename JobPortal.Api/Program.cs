@@ -2,7 +2,6 @@ using FluentValidation;
 using FluentValidation.Validators;
 using JobPortal.Api.Persistence;
 using JobPortal.Shared.Features.ManageJobs.Shared;
-using JobPortal.Shared.Features.ManageEmployer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -21,9 +20,6 @@ namespace JobPortal.Api
             builder.Services.AddDbContext<JobPortalContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("JobPortalContext")));
 
             builder.Services.AddScoped<IValidator<JobsDto>, JobsValidator>();
-
-            //builder.Services.AddScoped<IValidator<EmployerDto>, EmployerValidator>();
-
 
             builder.Services.AddControllers();
             //// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

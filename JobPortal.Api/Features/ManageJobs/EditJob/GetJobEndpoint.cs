@@ -19,8 +19,10 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
         [HttpGet(GetJobRequest.RouteTemplate)]
         public override async Task<ActionResult<GetJobRequest.Response>> HandleAsync(int jobsId, CancellationToken cancellationToken = default)
         {
-                var jobs = await _context.Jobs.Include(x => x.JobDescriptions)
+                var jobs = await _context.Jobs
+                .Include(x => x.JobDescriptions)
                 .Include(x=>x.JobRequirements)
+                .Where(j => j.Owner == HttpContext.User.Identity!.Name!)
                 .SingleOrDefaultAsync(x => x.Id == jobsId, cancellationToken: cancellationToken);
 
             if (jobs is null)

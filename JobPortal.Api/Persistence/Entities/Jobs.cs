@@ -1,4 +1,5 @@
 ﻿using JobPortal.Api.Persistence.Entities;
+using JobPortal.Shared.Features.ManageJobs.Employer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.ComponentModel.DataAnnotations;
@@ -40,6 +41,10 @@ public class Jobs
     
     public ICollection<JobRequirement> JobRequirements { get; set; } = default!;
 
+    internal IEnumerable<EmployerJobRequest.Jobs> Select(Func<object, EmployerJobRequest.Jobs> value)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class JobsConfig : IEntityTypeConfiguration<Jobs>

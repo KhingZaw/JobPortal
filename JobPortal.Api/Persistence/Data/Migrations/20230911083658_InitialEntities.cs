@@ -11,25 +11,6 @@ namespace JobPortal.Api.Persistence.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Employers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    EmployerId = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmployerName = table.Column<string>(type: "TEXT", nullable: false),
-                    EmployerEmail = table.Column<string>(type: "TEXT", nullable: false),
-                    EmployerPhone = table.Column<string>(type: "TEXT", nullable: false),
-                    Location = table.Column<string>(type: "TEXT", nullable: false),
-                    Image = table.Column<string>(type: "TEXT", nullable: true),
-                    Description = table.Column<string>(type: "TEXT", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Jobs",
                 columns: table => new
                 {
@@ -111,9 +92,6 @@ namespace JobPortal.Api.Persistence.Data.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Employers");
-
             migrationBuilder.DropTable(
                 name: "JobDescriptions");
 

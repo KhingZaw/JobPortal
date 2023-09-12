@@ -51,7 +51,6 @@ else
             _job.Location = response.Jobs.Location;
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
-            //_job.Released = response.Jobs.Released;
             _job.CreatedDate = response.Jobs.CreatedDate;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {

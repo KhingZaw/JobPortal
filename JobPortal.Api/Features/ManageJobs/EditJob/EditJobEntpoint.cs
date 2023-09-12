@@ -24,7 +24,8 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
     [HttpPut(EditJobRequest.RouteTemplate)]
     public override async Task<ActionResult<bool>> HandleAsync(EditJobRequest request, CancellationToken cancellationToken = default)
     {
-        var job = await _database.Jobs.Include(x => x.JobDescriptions)
+        var job = await _database.Jobs
+            .Include(x => x.JobDescriptions)
             .Include(x => x.JobRequirements)
             .SingleOrDefaultAsync(x => x.Id == request.Job.Id, cancellationToken: cancellationToken);
 

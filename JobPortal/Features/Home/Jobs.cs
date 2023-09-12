@@ -33,7 +33,6 @@
         public string Description { get; set; } = "";
 
         public string Owner { get; set; } = "";
-
         public IEnumerable <JobDescription> JobDescriptions { get; set; } = Array.Empty<JobDescription>();
         public IEnumerable <JobRequirement> JobRequirements { get; set; } = Array.Empty<JobRequirement>();
     }

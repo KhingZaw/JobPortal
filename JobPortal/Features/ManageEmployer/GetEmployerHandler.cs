@@ -6,17 +6,18 @@ namespace JobPortal.Features.ManageEmployer;
 
 public class GetEmployerHandler : IRequestHandler<GetEmployerRequest, GetEmployerRequest.Response?>
 {
-    private readonly HttpClient _httpClient;
-
-    public GetEmployerHandler(HttpClient httpClient)
+    private readonly IHttpClientFactory _httpClientFactory;
+    public GetEmployerHandler(IHttpClientFactory httpClientFactory)
     {
-        _httpClient = httpClient;
+        _httpClientFactory = httpClientFactory;
     }
     public async Task<GetEmployerRequest.Response?> Handle(GetEmployerRequest request, CancellationToken cancellationToken)
     {
         try
         {
-            return await _httpClient.GetFromJsonAsync<GetEmployerRequest.Response>(GetEmployerRequest.RouteTemplate);
+            var client = _httpClientFactory.CreateClient("SecureAPIClient");
+
+            return await client.GetFromJsonAsync<GetEmployerRequest.Response>(GetEmployerRequest.RouteTemplate.Replace("{employerId}", request.EmployerId.ToString()));
         }
         catch (HttpRequestException)
         {

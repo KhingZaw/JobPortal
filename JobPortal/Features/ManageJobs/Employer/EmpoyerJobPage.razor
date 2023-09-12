@@ -1,21 +1,20 @@
-﻿@page "/"
+﻿@page "/employer"
 @inject NavigationManager NavManager
 @inject IMediator Mediator
-@using JobPortal.Shared.Features.Home.Shared;
+@attribute [Authorize]
+@using JobPortal.Shared.Features.ManageJobs.Employer;
 
 <PageTitle>JobPortal</PageTitle>
 
 
-@if ( _jobs == null)
+@if (_job == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <JobSearch /> 
-
     <div class="grid">
-        @foreach (var job in _jobs)
+        @foreach (var job in _job)
         {
             <JobCard Job="job" OnSelected="HandleJobSelected" />
         }
@@ -23,16 +22,16 @@ else
 }
 
 @code {
-
-    private IEnumerable<Jobs>? _jobs;
     private Jobs? _selectedjob;
+    private string? _errorMessage;
+    private IEnumerable<Jobs>? _job;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
-            var response = await Mediator.Send(new GetJobsRequest());
-            _jobs = response.Jobs.Select(x => new Jobs
+            var response = await Mediator.Send(new EmployerJobRequest());
+            _job = response.Jobs.Select(x => new Jobs
                 {
                     Id = x.Id,
                     Name = x.Name,
@@ -46,7 +45,7 @@ else
                     Location = x.Location,
                     Salary = x.Salary,
                     CreatedDate = x.CreatedDate,
-                    Owner =x.Owner
+                    Owner = x.Owner
                 });
         }
         catch (HttpRequestException ex)
@@ -56,5 +55,4 @@ else
     }
     private void HandleJobSelected(Jobs job)
         => _selectedjob = job;
-
 }

@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Features\Home\JobDetails.razor" />
+    <Compile Remove="Features\ManageEmployer\**" />
+    <Content Remove="Features\ManageEmployer\**" />
+    <EmbeddedResource Remove="Features\ManageEmployer\**" />
+    <None Remove="Features\ManageEmployer\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Features\ManageEmployer\EmployerPage.razor" />
+    <Content Remove="Features\Home\JobDetails.razor" />
   </ItemGroup>
 
   <ItemGroup>

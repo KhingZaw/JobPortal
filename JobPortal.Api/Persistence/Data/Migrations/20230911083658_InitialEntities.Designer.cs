@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobPortal.Api.Persistence.Data.Migrations
 {
     [DbContext(typeof(JobPortalContext))]
-    [Migration("20230906042314_InitialEntities")]
+    [Migration("20230911083658_InitialEntities")]
     partial class InitialEntities
     {
         /// <inheritdoc />
@@ -18,43 +18,6 @@ namespace JobPortal.Api.Persistence.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.5");
-
-            modelBuilder.Entity("JobPortal.Api.Persistence.Entities.Employers", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EmployerEmail")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("EmployerId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("EmployerName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("EmployerPhone")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Image")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Location")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Employers");
-                });
 
             modelBuilder.Entity("JobPortal.Api.Persistence.Entities.JobDescription", b =>
                 {

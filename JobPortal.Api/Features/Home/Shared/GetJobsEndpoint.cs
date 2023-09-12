@@ -22,7 +22,8 @@ namespace JobPortal.Api.Features.Home.Shared
         {
             var jobs = await _context.Jobs
                 .Include(x => x.JobDescriptions)
-                .Include(x => x.JobRequirements).ToListAsync(cancellationToken);
+                .Include(x => x.JobRequirements)
+                .ToListAsync(cancellationToken);
 
             var response = new GetJobsRequest.Response(jobs.Select(job => new GetJobsRequest.Jobs(
                 job.Id,
