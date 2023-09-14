@@ -29,7 +29,7 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
             {
                 return BadRequest("Job could not be found.");
             }
-            if (!jobs.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator"))
+            if (!jobs.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator,Employer"))
             {
                 return Unauthorized();
             }

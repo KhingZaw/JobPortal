@@ -33,10 +33,11 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
         {
             return BadRequest("Job could not be found.");
         }
-        if (!job.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator"))
+        if (!job.Owner.Equals(HttpContext.User.Identity!.Name, StringComparison.OrdinalIgnoreCase) && !HttpContext.User.IsInRole("Administrator,Employer"))
         {
             return Unauthorized();
         }
+
         job.Name = request.Job.Name;
         job.FrameworkName = request.Job.FrameworkName;
         job.PLanguage = request.Job.PLanguage;

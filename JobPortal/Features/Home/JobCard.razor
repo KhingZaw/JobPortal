@@ -8,8 +8,9 @@
             <div class="card_center">
                 <h5 class="card-name">@Job.Name</h5>
                 <h5 class="card-employerName">@Job.EmployerName</h5>
-                <h6 class="card-text">@Job.JobType</h6>
-                <p class="card-text">@Job.Description</p>  
+            <button type="button" class="btn btn-link" @onclick="@(() => NavManager.NavigateTo($"/detail/{Job.Id}"))">@Job.JobType</button>
+            @*<h6 class="card-text">@Job.JobType</h6>*@
+                <p class="card-text">@Job.Description</p>
                <div>
                 <span class="oi oi-map-marker"> </span> @Job.Location &nbsp;
                 <i class="bi bi-calendar"> </i> @Job.CreatedDate &nbsp

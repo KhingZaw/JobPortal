@@ -23,7 +23,11 @@ a {
     border-bottom: 1px solid var(--brand);
     background-size: contain;
 }
-
+/*.btn-link {
+    font-weight: 400;
+    color: #0d6efd;
+    text-decoration-color: underline;
+}*/
 .btn-primary {
     background-color: var(--brand);
     border-color: var(--brand);
