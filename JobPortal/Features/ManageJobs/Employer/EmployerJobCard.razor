@@ -2,27 +2,27 @@
 
 <div class="parent_card">
     <div class="card shadow" style="">
-        <div class=" card-left bule-bg">
-             <img src="@(!string.IsNullOrWhiteSpace(Job.Image) ? $"images/{Job.Image}" : "https://via.placeholder.com/286x190.jpg?text=No+Image+For+Job")" class="card_img_left">
-        </div>
-            <div class="card_center">
-                <h5 class="card-name">@Job.Name</h5>
-                <h5 class="card-employerName">@Job.EmployerName</h5>
+       @* <div class=" card-left bule-bg">
+            <img src="@(!string.IsNullOrWhiteSpace(Job.Image) ? $"images/{Job.Image}" : "https://via.placeholder.com/286x190.jpg?text=No+Image+For+Job")" class="card_img_left">
+        </div>*@
+        <div class="card_center">
+            <h5 class="card-name">@Job.Name</h5>
+            <h5 class="card-employerName">@Job.EmployerName</h5>
             <button type="button" class="btn btn-link" @onclick="@(() => NavManager.NavigateTo($"/detail/{Job.Id}"))">@Job.JobType</button>
             @*<h6 class="card-text">@Job.JobType</h6>*@
-                <p class="card-text">@Job.Description</p>
-               <div>
+            <p class="card-text">@Job.Description</p>
+            <div>
                 <span class="oi oi-map-marker"> </span> @Job.Location &nbsp;
                 <i class="bi bi-calendar"> </i> @Job.Date.ToShortDateString() &nbsp;
                 <AuthorizeView>
                     <i class=" bi bi-cash"></i> @Job.Salary.ToString() &nbsp;
                 </AuthorizeView>
-                <i class="bi bi-clock"></i> @Job.Time.ToString("hh:mm") &nbsp;
+                <i class="bi bi-clock"></i> @Job.Time.ToString() &nbsp;
             </div>
-            
+
             <div class="d-flex justify-content-between mb-3">
                 <button class="btn btn-primary" title="View" @onclick="@(() => NavManager.NavigateTo($"/detail/{Job.Id}"))">
-                  <i class="bi bi-binoculars"></i>
+                    <i class="bi bi-binoculars"></i>
                 </button>
 
                 <AuthorizeView>
@@ -41,9 +41,9 @@
     </div>
 </div>
 
-@code 
+@code
 {
-    [Parameter, EditorRequired] public Jobs Job{ get; set; } = default!;
+    [Parameter, EditorRequired] public Jobs Job { get; set; } = default!;
     [Parameter, EditorRequired] public EventCallback<Jobs> OnSelected { get; set; }
-   
+
 }

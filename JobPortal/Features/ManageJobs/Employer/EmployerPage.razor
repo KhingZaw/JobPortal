@@ -1,1 +1,57 @@
-﻿
+﻿@page "/employer"
+@inject NavigationManager NavManager
+@inject IMediator Mediator
+@attribute [Authorize]
+@using JobPortal.Shared.Features.ManageJobs.Employer;
+
+<PageTitle>JobPortal</PageTitle>
+
+
+@if (_job == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="grid">
+        @foreach (var job in _job)
+        {
+            <EmployerJobCard Job="job" OnSelected="HandleJobSelected" />
+        }
+    </div>
+}
+
+@code {
+    private Jobs? _selectedjob;
+    private IEnumerable<Jobs>? _job;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var response = await Mediator.Send(new EmployerJobRequest());
+            _job = response.Jobs.Select(x => new Jobs
+                {
+                    Id = x.Id,
+                    Name = x.Name,
+                    EmployerName = x.EmployerName,
+                    PLanguage = x.PLanguage,
+                    FrameworkName = x.FrameworkName,
+                    JobType = x.JobType,
+                    Opento = x.Opento,
+                    Image = x.Image,
+                    Description = x.Description,
+                    Location = x.Location,
+                    Salary = x.Salary,
+                    Date = x.Date,
+                    Owner = x.Owner
+                });
+        }
+        catch (HttpRequestException ex)
+        {
+            Console.WriteLine($"There was a problem loading job data: {ex.Message}");
+        }
+    }
+    private void HandleJobSelected(Jobs job)
+        => _selectedjob = job;
+}
