@@ -1,8 +1,6 @@
-﻿using JobPortal.Api.Persistence.Entities;
-using JobPortal.Shared.Features.ManageJobs.Employer;
+﻿using JobPortal.Shared.Features.ManageJobs.Employer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.ComponentModel.DataAnnotations;
 
 namespace JobPortal.Api.Persistence.Entities;
 public class Jobs
@@ -23,8 +21,6 @@ public class Jobs
 
     public DateTime Time { get; set; } = DateTime.Now;
 
-    public DateOnly Date { get; set; } = new DateOnly();
-
     public string OpentoName { get; set; } = "";
 
     public string Opento { get; set; } = "";
@@ -43,10 +39,10 @@ public class Jobs
     
     public ICollection<JobRequirement> JobRequirements { get; set; } = default!;
 
-    internal IEnumerable<EmployerJobRequest.Jobs> Select(Func<object, EmployerJobRequest.Jobs> value)
-    {
-        throw new NotImplementedException();
-    }
+    //internal IEnumerable<EmployerJobRequest.Jobs> Select(Func<object, EmployerJobRequest.Jobs> value)
+    //{
+    //    throw new NotImplementedException();
+    //}
 }
 
 public class JobsConfig : IEntityTypeConfiguration<Jobs>

@@ -46,7 +46,7 @@ namespace JobPortal.Api.Features.ManageJobs.Employer
             job.SourceName,
             job.Location,
             job.Description,
-            job.Date,
+            job.Time,
             job.Salary,
             job.Owner)));
 

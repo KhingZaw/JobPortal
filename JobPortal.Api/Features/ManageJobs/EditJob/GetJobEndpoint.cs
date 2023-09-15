@@ -47,7 +47,6 @@ namespace JobPortal.Api.Features.ManageJobs.EditJob
                 jobs.Location,
                 jobs.Description,
                 jobs.Time,
-                jobs.Date,
                 jobs.Salary,
                 jobs.JobDescriptions.Select(ri => new GetJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
                 jobs.JobRequirements.Select(ri => new GetJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))

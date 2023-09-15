@@ -15,8 +15,8 @@ else
     <h6 class="mb-3 text-muted"><span class="oi oi-map-marker"></span> @_job.Location</h6>
 
     <div class="mt-4">
-        <p> <i class="bi bi-calendar"> </i> @_job.Date.ToShortDateString() </p>
-        <p> <i class="bi bi-clock"> </i> @_job.Time.ToShortTimeString() </p> &nbsp
+        <p> <i class="bi bi-calendar"> </i> @_job.Time.ToString("dd/MM/yyyy") </p>
+        <p> <i class="bi bi-clock"> </i> @_job.Time.ToString("hh:mm tt") </p>
         <p><i class="bi bi-cash"> </i> @_job.Salary </p>
     </div>
 
@@ -71,7 +71,6 @@ else
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
             _job.Time = response.Jobs.Time;
-            _job.Date = response.Jobs.Date;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,

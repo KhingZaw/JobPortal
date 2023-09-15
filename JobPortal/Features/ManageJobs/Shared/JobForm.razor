@@ -65,11 +65,11 @@
                 </div>
             }
         </FormFieldSet>
-        <FormFieldSet Width="col-6">
-            <label for="jobDate" class="font-weight-bold text-secondary">Date</label>
+       @* <FormFieldSet Width="col-6">
+            <label for="jobdate" class="font-weight-bold text-secondary">Date and Time</label>
             <InputDate @bind-Value="_job.Date" class="form-control" id="JobDate" />
             <ValidationMessage For="@(() => _job.Date)" />
-        </FormFieldSet>
+        </FormFieldSet>*@
 
     </FormSection>
 
@@ -207,8 +207,8 @@
             _job.Location = Job.Location;
             _job.Image = Job.Image;
             _job.ImageAction = ImageAction.None;
+            _job.Time = Job.Time;
             _job.Salary = Job.Salary;
-            _job.Date = Job.Date;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(Job.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {

@@ -51,7 +51,7 @@ else
             _job.Location = response.Jobs.Location;
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
-            _job.Date = response.Jobs.Date;
+            _job.Time = response.Jobs.Time;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,
@@ -92,7 +92,6 @@ else
             _job.Location = job.Location;
             _job.Salary = job.Salary;
             _job.Time = job.Time;
-            _job.Date = job.Date;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(job.JobDescriptions.Select(ri => new JobsDto.JobDescription
             {
