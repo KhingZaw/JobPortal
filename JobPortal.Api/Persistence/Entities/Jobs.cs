@@ -21,7 +21,9 @@ public class Jobs
 
     public string JobType { get; set; } = "";
 
-    public string CreatedDate { get; set; } = "";
+    public DateTime Time { get; set; } = DateTime.Now;
+
+    public DateOnly Date { get; set; } = new DateOnly();
 
     public string OpentoName { get; set; } = "";
 

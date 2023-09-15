@@ -11,9 +11,7 @@
         </FormFieldSet>
         <FormFieldSet Width="col-6">
             <label for="opento" class="font-weight-bold text-secondary">Opento</label>
-
             <select @bind="_job.Opento" class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="male/female">Male/Female</option>
@@ -67,11 +65,12 @@
                 </div>
             }
         </FormFieldSet>
-        @*<FormFieldSet Width="col-5">
-            <MudDatePicker Label="JobReleasedDate" Color="Color.Secondary" @bind-Date=_job.Released />
-            <br />
+        <FormFieldSet Width="col-6">
+            <label for="jobDate" class="font-weight-bold text-secondary">Date</label>
+            <InputDate @bind-Value="_job.Date" class="form-control" id="JobDate" />
+            <ValidationMessage For="@(() => _job.Date)" />
         </FormFieldSet>
-*@
+
     </FormSection>
 
     <FormSection Title="Salary"
@@ -209,7 +208,7 @@
             _job.Image = Job.Image;
             _job.ImageAction = ImageAction.None;
             _job.Salary = Job.Salary;
-            _job.CreatedDate = Job.CreatedDate;
+            _job.Date = Job.Date;
             _job.JobDescriptions.Clear();
             _job.JobDescriptions.AddRange(Job.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {

@@ -40,7 +40,8 @@ namespace JobPortal.Api.Features.ManageJobs.Detailob
             jobs.SourceName,
             jobs.Location,
             jobs.Description,
-            jobs.CreatedDate,
+            jobs.Time,
+            jobs.Date,
             jobs.Salary,
             jobs.JobDescriptions.Select(ri => new DetailJobRequest.JobDescription(ri.JobsId, ri.Stage, ri.Description)),
             jobs.JobRequirements.Select(ri => new DetailJobRequest.JobRequirement(ri.JobsId, ri.Stage, ri.Requirement))

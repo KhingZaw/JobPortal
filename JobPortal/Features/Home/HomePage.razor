@@ -5,7 +5,6 @@
 
 <PageTitle>JobPortal</PageTitle>
 
-
 @if ( _jobs == null)
 {
     <p><em>Loading...</em></p>
@@ -45,7 +44,8 @@ else
                     Description = x.Description,
                     Location = x.Location,
                     Salary = x.Salary,
-                    CreatedDate = x.CreatedDate,
+                    Time =x.Time,
+                    Date = x.Date,
                     Owner =x.Owner
                 });
         }

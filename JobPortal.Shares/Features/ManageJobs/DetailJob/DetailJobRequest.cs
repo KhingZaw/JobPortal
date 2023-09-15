@@ -19,7 +19,8 @@ public record DetailJobRequest(int JobsId) : IRequest<DetailJobRequest.Response>
         string SourceName,
         string Location,
         string Description,
-        string CreatedDate,
+        DateTime Time,
+        DateOnly Date,
         int Salary,
         IEnumerable<JobDescription> JobDescriptions,
         IEnumerable<JobRequirement> JobRequirements);

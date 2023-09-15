@@ -18,7 +18,8 @@ namespace JobPortal.Shared.Features.Home.Shared
             string SourceName,
             string Description,
             string Location,
-            string CreatedDate,
+            DateTime Time,
+            DateOnly Date,
             int Salary,
             string Owner);
         public record Response(IEnumerable<Jobs> Jobs);

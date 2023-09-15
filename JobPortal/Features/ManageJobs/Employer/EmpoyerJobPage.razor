@@ -13,6 +13,12 @@
 }
 else
 {
+   @* <div>
+        @foreach (var job in _job)
+        {
+            <EmployerPage Job="job" OnSelected="HandleJobSelected" />
+        }
+    </div>*@
     <div class="grid">
         @foreach (var job in _job)
         {
@@ -23,7 +29,6 @@ else
 
 @code {
     private Jobs? _selectedjob;
-    private string? _errorMessage;
     private IEnumerable<Jobs>? _job;
 
     protected override async Task OnInitializedAsync()
@@ -44,7 +49,7 @@ else
                     Description = x.Description,
                     Location = x.Location,
                     Salary = x.Salary,
-                    CreatedDate = x.CreatedDate,
+                    Date = x.Date,
                     Owner = x.Owner
                 });
         }

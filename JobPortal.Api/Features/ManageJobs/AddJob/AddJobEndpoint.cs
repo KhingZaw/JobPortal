@@ -32,7 +32,8 @@ public class AddJobEndpoint : BaseAsyncEndpoint.WithRequest<AddJobRequest>.WithR
                 Opento = request.Jobs.Opento,
                 Description = request.Jobs.Description,
                 Location = request.Jobs.Location,
-                CreatedDate = request.Jobs.CreatedDate,
+                Time = request.Jobs.Time,
+                Date = request.Jobs.Date,
                 Salary = request.Jobs.Salary,
                 Owner = HttpContext.User.Identity!.Name!
         };

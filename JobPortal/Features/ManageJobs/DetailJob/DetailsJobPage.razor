@@ -15,9 +15,9 @@ else
     <h6 class="mb-3 text-muted"><span class="oi oi-map-marker"></span> @_job.Location</h6>
 
     <div class="mt-4">
-        <p> <i class="bi bi-calendar"> </i> @_job.CreatedDate </p>
-        @*<p> <i class="bi bi-clock"> </i> @_job.Released &nbsp </p>*@
-        <p><i class="bi bi-currency-dollar"> </i> @_job.Salary </p>
+        <p> <i class="bi bi-calendar"> </i> @_job.Date.ToShortDateString() </p>
+        <p> <i class="bi bi-clock"> </i> @_job.Time.ToShortTimeString() </p> &nbsp
+        <p><i class="bi bi-cash"> </i> @_job.Salary </p>
     </div>
 
     @if (_errorMessage is not null)
@@ -70,7 +70,8 @@ else
             _job.Location = response.Jobs.Location;
             _job.Image = response.Jobs.Image;
             _job.Salary = response.Jobs.Salary;
-            _job.CreatedDate = response.Jobs.CreatedDate;
+            _job.Time = response.Jobs.Time;
+            _job.Date = response.Jobs.Date;
             _job.JobDescriptions.AddRange(response.Jobs.JobDescriptions.Select(ri => new JobsDto.JobDescription
                 {
                     Stage = ri.Stage,

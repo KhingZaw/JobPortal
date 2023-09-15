@@ -19,7 +19,7 @@ public record EmployerJobRequest : IRequest<EmployerJobRequest.Response>
         string SourceName,
         string Location,
         string Description,
-        string CreatedDate,
+        DateOnly Date,
         int Salary,
         string Owner);
     public record Response(IEnumerable<Jobs> Jobs);

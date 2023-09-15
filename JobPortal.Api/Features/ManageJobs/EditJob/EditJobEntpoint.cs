@@ -46,7 +46,7 @@ public class EditJobEndpoint : BaseAsyncEndpoint.WithRequest<EditJobRequest>.Wit
         job.Opento = request.Job.Opento;
         job.Description = request.Job.Description;
         job.Location = request.Job.Location;
-        job.CreatedDate = request.Job.CreatedDate;
+        job.Date = request.Job.Date;
         job.Salary = request.Job.Salary;
         job.JobDescriptions = request.Job.JobDescriptions.Select(ri => new JobDescription
         {

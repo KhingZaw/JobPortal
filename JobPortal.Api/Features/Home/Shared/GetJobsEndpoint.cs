@@ -38,7 +38,8 @@ namespace JobPortal.Api.Features.Home.Shared
                 job.SourceName,
                 job.Description,
                 job.Location,
-                job.CreatedDate,
+                job.Time,
+                job.Date,
                 job.Salary,
                 job.Owner
                 )));

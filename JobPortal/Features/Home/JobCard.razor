@@ -13,9 +13,11 @@
                 <p class="card-text">@Job.Description</p>
                <div>
                 <span class="oi oi-map-marker"> </span> @Job.Location &nbsp;
-                <i class="bi bi-calendar"> </i> @Job.CreatedDate &nbsp
-                <i class="bi bi-currency-bitcoin"> </i> @Job.Salary
-              
+                <i class="bi bi-calendar"> </i> @Job.Date.ToShortDateString() &nbsp;
+                <AuthorizeView>
+                    <i class=" bi bi-cash"></i> @Job.Salary.ToString() &nbsp;
+                </AuthorizeView>
+                <i class="bi bi-clock"></i> @Job.Time.ToString() &nbsp;
             </div>
             
             <div class="d-flex justify-content-between mb-3">
